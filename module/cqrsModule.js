@@ -15,7 +15,8 @@ let CqrsModule = CqrsModule_1 = class CqrsModule extends engine_1.Module {
         this.Defaults = {
             commandsBusId: "commandsBus",
             eventsBusId: "eventsBus",
-            queryBusId: "queryBus"
+            queryBusId: "queryBus",
+            namespace: ""
         };
     }
     static for(options) {
@@ -43,7 +44,7 @@ let CqrsModule = CqrsModule_1 = class CqrsModule extends engine_1.Module {
                     return;
                 }
                 prop.events.forEach(event => {
-                    if (event.options.type.split(".").length == 1 && !event.options.routingKey) {
+                    if (this.moduleOptions.namespace && event.options.type.split(".").length == 1 && !event.options.routingKey) {
                         event.options.type = `${this.moduleOptions.namespace}.${event.options.type}`;
                     }
                     fn(event.options.type, event.options)(item.fn.prototype, prop.propertyKey, prop.descriptor);
@@ -58,7 +59,7 @@ let CqrsModule = CqrsModule_1 = class CqrsModule extends engine_1.Module {
                         else {
                             instance = class_transformer_1.plainToClass(event.options.fn, msg.body);
                         }
-                        return old.call(this, instance);
+                        return old.call(this, instance, msg);
                     };
                 });
             });

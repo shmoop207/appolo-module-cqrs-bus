@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@appolo/core");
+const engine_1 = require("@appolo/engine");
 const index_1 = require("../../index");
 const bus_1 = require("@appolo/bus");
 const manager_1 = require("../mock/src/manager/manager");
@@ -9,7 +9,7 @@ let should = require('chai').should();
 describe("CQRS module Spec", function () {
     let app;
     beforeEach(async () => {
-        app = core_1.createApp({ root: process.cwd() + '/test/mock/', environment: "production", port: 8182 });
+        app = engine_1.createApp({ root: process.cwd() + '/test/mock/', environment: "production" });
         app.module.use(bus_1.BusModule.for({
             queue: "bus-test",
             requestQueue: "bus-test-request",

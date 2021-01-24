@@ -51,7 +51,7 @@ export abstract class BaseBus {
 
         let dto = {type, ...params, ...commandOptions, data: classToPlain(fn)}
 
-        if (dto.type.split(".").length == 1 && !dto.routingKey) {
+        if (this.moduleOptions.namespace && dto.type.split(".").length == 1 && !dto.routingKey) {
             dto.type = `${this.moduleOptions.namespace}.${dto.type}`;
         }
 

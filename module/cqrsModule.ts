@@ -13,7 +13,8 @@ export class CqrsModule extends Module<IOptions> {
     protected readonly Defaults: Partial<IOptions> = {
         commandsBusId: "commandsBus",
         eventsBusId: "eventsBus",
-        queryBusId: "queryBus"
+        queryBusId: "queryBus",
+        namespace: ""
     };
 
 
@@ -56,7 +57,7 @@ export class CqrsModule extends Module<IOptions> {
                 }
 
                 prop.events.forEach(event => {
-                    if (event.options.type.split(".").length == 1 && !event.options.routingKey) {
+                    if (this.moduleOptions.namespace && event.options.type.split(".").length == 1 && !event.options.routingKey) {
                         event.options.type = `${this.moduleOptions.namespace}.${event.options.type}`;
                     }
 
@@ -75,7 +76,7 @@ export class CqrsModule extends Module<IOptions> {
                             instance = plainToClass(event.options.fn, msg.body);
                         }
 
-                        return old.call(this, instance);
+                        return old.call(this, instance, msg);
                     }
                 })
             })

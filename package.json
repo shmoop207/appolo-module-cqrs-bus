@@ -1,6 +1,6 @@
 {
   "name": "@appolo/cqrs-bus",
-  "version": "8.0.0",
+  "version": "8.0.2",
   "description": "appolo cqrs module",
   "keywords": [
     "appolo"
@@ -13,14 +13,13 @@
     "test": "mocha test/spec/**/*.js"
   },
   "dependencies": {
-    "@appolo/bus": "^8.0.1",
-    "@appolo/core": "^8.0.1",
-    "@appolo/engine": "^8.0.7",
-    "@appolo/events": "^8.0.0",
-    "@appolo/inject": "^8.0.3",
-    "@appolo/logger": "^8.0.1",
-    "@appolo/utils": "^8.0.0",
-    "class-transformer": "^0.3.1"
+    "@appolo/bus": "^8.0.10",
+    "@appolo/engine": "^8.0.22",
+    "@appolo/events": "^8.0.2",
+    "@appolo/inject": "^8.0.13",
+    "@appolo/logger": "^8.0.5",
+    "@appolo/utils": "^8.0.11",
+    "class-transformer": "^0.3.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

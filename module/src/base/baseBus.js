@@ -27,7 +27,7 @@ class BaseBus {
         let type = fn.constructor.name;
         let commandOptions = utils_1.Reflector.getFnMetadata(this.Symbol, fn.constructor);
         let dto = Object.assign(Object.assign(Object.assign({ type }, params), commandOptions), { data: class_transformer_1.classToPlain(fn) });
-        if (dto.type.split(".").length == 1 && !dto.routingKey) {
+        if (this.moduleOptions.namespace && dto.type.split(".").length == 1 && !dto.routingKey) {
             dto.type = `${this.moduleOptions.namespace}.${dto.type}`;
         }
         return dto;

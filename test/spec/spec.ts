@@ -1,4 +1,4 @@
-import {App, createApp} from '@appolo/core'
+import {App, createApp} from '@appolo/engine'
 import {CqrsModule} from '../../index'
 import {BusModule} from '@appolo/bus'
 import {Manager} from "../mock/src/manager/manager";
@@ -13,7 +13,7 @@ describe("CQRS module Spec", function () {
 
     beforeEach(async () => {
 
-        app = createApp({root: process.cwd() + '/test/mock/', environment: "production", port: 8182});
+        app = createApp({root: process.cwd() + '/test/mock/', environment: "production"});
 
          app.module.use( BusModule.for({
             queue: "bus-test",
