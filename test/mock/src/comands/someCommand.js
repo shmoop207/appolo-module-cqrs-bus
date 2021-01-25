@@ -15,7 +15,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", bus_1.BusProvider)
 ], SomeCommand.prototype, "busProvider", void 0);
 SomeCommand = tslib_1.__decorate([
-    index_1.command(),
+    index_1.command({ retry: { retires: 3 } }),
     inject_1.define(),
     tslib_1.__metadata("design:paramtypes", [String])
 ], SomeCommand);

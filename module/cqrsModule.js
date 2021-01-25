@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CqrsModule = void 0;
 const tslib_1 = require("tslib");
 const engine_1 = require("@appolo/engine");
+const inject_1 = require("@appolo/inject");
 const index_1 = require("../index");
 const queryBus_1 = require("./src/query/queryBus");
 const decorators_1 = require("./src/decorators/decorators");
@@ -50,22 +51,36 @@ let CqrsModule = CqrsModule_1 = class CqrsModule extends engine_1.Module {
                     fn(event.options.type, event.options)(item.fn.prototype, prop.propertyKey, prop.descriptor);
                     let old = item.fn.prototype[prop.propertyKey];
                     let $this = this;
-                    item.fn.prototype[prop.propertyKey] = function (msg) {
-                        let instance;
-                        if (!!$this._app.injector.getDefinition(event.options.fn)) {
-                            instance = $this._app.injector.get(event.options.fn);
-                            instance = class_transformer_1.plainToClassFromExist(instance, msg.body);
+                    item.fn.prototype[prop.propertyKey] = async function (msg) {
+                        try {
+                            let instance;
+                            if (!!$this._app.injector.getDefinition(event.options.fn)) {
+                                instance = $this._app.injector.get(event.options.fn);
+                                instance = class_transformer_1.plainToClassFromExist(instance, msg.body);
+                            }
+                            else {
+                                instance = class_transformer_1.plainToClass(event.options.fn, msg.body);
+                            }
+                            let result = await old.call(this, instance, msg);
+                            return result;
                         }
-                        else {
-                            instance = class_transformer_1.plainToClass(event.options.fn, msg.body);
+                        catch (e) {
+                            $this.logger.error(`failed to run handler ${item.fn.name} ${prop.propertyKey}`, {
+                                e,
+                                body: msg.body
+                            });
+                            throw e;
                         }
-                        return old.call(this, instance, msg);
                     };
                 });
             });
         });
     }
 };
+tslib_1.__decorate([
+    inject_1.inject(),
+    tslib_1.__metadata("design:type", Object)
+], CqrsModule.prototype, "logger", void 0);
 CqrsModule = CqrsModule_1 = tslib_1.__decorate([
     engine_1.module()
 ], CqrsModule);

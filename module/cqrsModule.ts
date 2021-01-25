@@ -1,4 +1,6 @@
 import {Module, module, IModuleParams} from "@appolo/engine";
+import {inject} from "@appolo/inject";
+import {ILogger} from "@appolo/logger";
 import {CommandsBus, EventsBus, IOptions} from "../index";
 import {QueryBus} from "./src/query/queryBus";
 import {CommandHandlerSymbol, EventHandlerSymbol, QueryHandlerSymbol} from "./src/decorators/decorators";
@@ -17,6 +19,7 @@ export class CqrsModule extends Module<IOptions> {
         namespace: ""
     };
 
+    @inject() private logger: ILogger
 
     public static for(options: IOptions): IModuleParams {
         return {type: CqrsModule, options}
@@ -65,18 +68,33 @@ export class CqrsModule extends Module<IOptions> {
                     let old = item.fn.prototype[prop.propertyKey];
 
                     let $this = this;
-                    item.fn.prototype[prop.propertyKey] = function (msg: IMessage<any>) {
+                    item.fn.prototype[prop.propertyKey] = async function (msg: IMessage<any>) {
 
-                        let instance;
+                        try {
+                            let instance;
 
-                        if (!!$this._app.injector.getDefinition(event.options.fn)) {
-                            instance = $this._app.injector.get(event.options.fn);
-                            instance = plainToClassFromExist(instance, msg.body)
-                        } else {
-                            instance = plainToClass(event.options.fn, msg.body);
+                            if (!!$this._app.injector.getDefinition(event.options.fn)) {
+                                instance = $this._app.injector.get(event.options.fn);
+                                instance = plainToClassFromExist(instance, msg.body)
+                            } else {
+                                instance = plainToClass(event.options.fn, msg.body);
+                            }
+
+                            let result = await old.call(this, instance, msg);
+
+                            return result;
+
+                        } catch (e) {
+
+                            $this.logger.error(`failed to run handler ${item.fn.name} ${prop.propertyKey}`, {
+                                e,
+                                body: msg.body
+                            })
+
+                            throw e;
                         }
 
-                        return old.call(this, instance, msg);
+
                     }
                 })
             })

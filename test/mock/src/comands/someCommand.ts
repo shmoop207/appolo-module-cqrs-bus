@@ -2,7 +2,7 @@ import {command} from "../../../../index";
 import {define,inject} from "@appolo/inject";
 import {BusProvider} from "@appolo/bus";
 
-@command()
+@command({retry:{retires:3}})
 @define()
 export class SomeCommand {
 
