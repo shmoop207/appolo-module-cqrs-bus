@@ -9,21 +9,7 @@ let QueryBus = class QueryBus extends baseBus_1.BaseBus {
     constructor() {
         super(...arguments);
         this.Symbol = decorators_1.QueryHandlerSymbol;
-        // protected async _callHandler(define: Define, propertyKey: string, args: { guid: string, command: Command }) {
-        //
-        //     try {
-        //         let instance = this.injector.parent.get(define.id);
-        //
-        //         let result = await instance[propertyKey](args.command);
-        //
-        //         this._dispatcher.fireEvent(this.QueryResultSymbol, {guid: args.guid, result, status: true})
-        //
-        //     } catch (e) {
-        //         this._dispatcher.fireEvent(this.QueryResultSymbol, {guid: args.guid, result: null, status: false, e});
-        //     }
-        // }
     }
-    //protected readonly QueryResultSymbol = "__QueryResultSymbol__";
     query(query, options = {}) {
         return this.requestFromBus(query, options);
     }

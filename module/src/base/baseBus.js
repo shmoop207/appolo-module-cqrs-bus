@@ -3,15 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseBus = void 0;
 const tslib_1 = require("tslib");
 const inject_1 = require("@appolo/inject");
-const events_1 = require("@appolo/events");
 const engine_1 = require("@appolo/engine");
 const logger_1 = require("@appolo/logger");
 const bus_1 = require("@appolo/bus");
 const utils_1 = require("@appolo/utils");
 class BaseBus {
-    constructor() {
-        this._dispatcher = new events_1.EventDispatcher();
-    }
     initialize() {
     }
     publishToBus(fn, params) {

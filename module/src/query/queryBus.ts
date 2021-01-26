@@ -15,27 +15,9 @@ export class QueryBus extends BaseBus {
 
     protected readonly Symbol = QueryHandlerSymbol;
 
-    //protected readonly QueryResultSymbol = "__QueryResultSymbol__";
-
-
     public  query<T>(query: Query, options: Partial<IPublishProviderOptions> = {}): Promise<T> {
 
         return this.requestFromBus(query, options)
     }
-
-
-    // protected async _callHandler(define: Define, propertyKey: string, args: { guid: string, command: Command }) {
-    //
-    //     try {
-    //         let instance = this.injector.parent.get(define.id);
-    //
-    //         let result = await instance[propertyKey](args.command);
-    //
-    //         this._dispatcher.fireEvent(this.QueryResultSymbol, {guid: args.guid, result, status: true})
-    //
-    //     } catch (e) {
-    //         this._dispatcher.fireEvent(this.QueryResultSymbol, {guid: args.guid, result: null, status: false, e});
-    //     }
-    // }
 
 }

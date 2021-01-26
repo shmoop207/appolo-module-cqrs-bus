@@ -12,7 +12,6 @@ import {Reflector,Classes} from "@appolo/utils";
 
 
 export abstract class BaseBus {
-    protected _dispatcher = new EventDispatcher();
 
     @inject() protected app: App;
     @inject() protected moduleOptions: IOptions;
