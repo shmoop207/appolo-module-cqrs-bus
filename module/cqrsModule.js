@@ -9,7 +9,7 @@ const index_1 = require("../index");
 const queryBus_1 = require("./src/query/queryBus");
 const decorators_1 = require("./src/decorators/decorators");
 const bus_1 = require("@appolo/bus");
-const class_transformer_1 = require("class-transformer");
+const utils_1 = require("@appolo/utils");
 let CqrsModule = CqrsModule_1 = class CqrsModule extends engine_1.Module {
     constructor() {
         super(...arguments);
@@ -56,10 +56,10 @@ let CqrsModule = CqrsModule_1 = class CqrsModule extends engine_1.Module {
                             let instance;
                             if (!!$this._app.injector.getDefinition(event.options.fn)) {
                                 instance = $this._app.injector.get(event.options.fn);
-                                instance = class_transformer_1.plainToClassFromExist(instance, msg.body);
+                                instance = utils_1.Classes.plainToClassInstance(instance, msg.body);
                             }
                             else {
-                                instance = class_transformer_1.plainToClass(event.options.fn, msg.body);
+                                instance = utils_1.Classes.plainToClass(event.options.fn, msg.body);
                             }
                             let result = await old.call(this, instance, msg);
                             return result;

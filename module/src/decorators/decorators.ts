@@ -5,7 +5,6 @@ import {Command, ICommandCtr} from "../interfaces/ICommand";
 import {IHandlerMetadata, IHandlerMetaIndex, ISagaMetaIndex} from "../interfaces/IHandlerMetadata";
 import {IEventCtr} from "../interfaces/IEvent";
 import {IQueryCtr} from "../interfaces/IQuery";
-import {plainToClass, classToPlain} from 'class-transformer';
 
 export const CommandHandlerSymbol = "__CommandHandlerSymbol__"
 export const EventHandlerSymbol = "__EventHandlerSymbol__"
@@ -16,7 +15,7 @@ export function defineClassHandler(target: any, opts: { fn?: IClass, type?: stri
     Reflector.setMetadata(symbol, opts, target);
 }
 
-export function defineHandler(opts: { fn?: IClass, type?: string } & IHandlerMetadataOptions, symbol: string) {
+export function defineHandler(opts: { fn?: IClass, type?: string, delay?: number, expire?: number, headers?: { [index: string]: any } } & IHandlerMetadataOptions, symbol: string) {
     return function (target: any, propertyKey?: string, descriptor?: PropertyDescriptor) {
 
         if (!propertyKey) {
@@ -76,15 +75,19 @@ export function defineHandler(opts: { fn?: IClass, type?: string } & IHandlerMet
     }
 }
 
-export function command(opts: { fn?: ICommandCtr, type?: string } & IHandlerMetadataOptions = {}) {
+type HandlerOptions =
+    { type?: string, delay?: number, expire?: number, headers?: { [index: string]: any } }
+    & IHandlerMetadataOptions
+
+export function command(opts: { fn?: ICommandCtr } & HandlerOptions = {}) {
     return defineHandler(opts, CommandHandlerSymbol)
 }
 
-export function event(opts: { fn?: IEventCtr, type?: string } & IHandlerMetadataOptions = {}) {
+export function event(opts: { fn?: IEventCtr } & HandlerOptions = {}) {
     return defineHandler(opts, EventHandlerSymbol)
 }
 
-export function query(opts: { fn?: IQueryCtr, type?: string } & IHandlerMetadataOptions = {}) {
+export function query(opts: { fn?: IQueryCtr } & HandlerOptions = {}) {
     return defineHandler(opts, QueryHandlerSymbol)
 }
 

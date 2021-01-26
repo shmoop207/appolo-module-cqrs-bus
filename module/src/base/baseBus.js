@@ -8,7 +8,6 @@ const engine_1 = require("@appolo/engine");
 const logger_1 = require("@appolo/logger");
 const bus_1 = require("@appolo/bus");
 const utils_1 = require("@appolo/utils");
-const class_transformer_1 = require("class-transformer");
 class BaseBus {
     constructor() {
         this._dispatcher = new events_1.EventDispatcher();
@@ -26,7 +25,7 @@ class BaseBus {
     _getBusParams(params, fn) {
         let type = fn.constructor.name;
         let commandOptions = utils_1.Reflector.getFnMetadata(this.Symbol, fn.constructor);
-        let dto = Object.assign(Object.assign(Object.assign({ type }, params), commandOptions), { data: class_transformer_1.classToPlain(fn) });
+        let dto = Object.assign(Object.assign(Object.assign({ type }, commandOptions), params), { data: utils_1.Classes.classToPlain(fn) });
         if (this.moduleOptions.namespace && dto.type.split(".").length == 1 && !dto.routingKey) {
             dto.type = `${this.moduleOptions.namespace}.${dto.type}`;
         }

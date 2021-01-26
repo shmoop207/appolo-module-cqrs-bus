@@ -7,7 +7,7 @@ import {CommandHandlerSymbol, EventHandlerSymbol, QueryHandlerSymbol} from "./sr
 import {IHandlerMetadata} from "./src/interfaces/IHandlerMetadata";
 import {handler, IHandlerMetadataOptions, IMessage, reply} from '@appolo/bus';
 import {IExported} from "@appolo/engine/lib/modules/interfaces/IModule";
-import {plainToClass, plainToClassFromExist} from "class-transformer";
+import {Classes} from "@appolo/utils";
 
 @module()
 export class CqrsModule extends Module<IOptions> {
@@ -75,9 +75,9 @@ export class CqrsModule extends Module<IOptions> {
 
                             if (!!$this._app.injector.getDefinition(event.options.fn)) {
                                 instance = $this._app.injector.get(event.options.fn);
-                                instance = plainToClassFromExist(instance, msg.body)
+                                instance = Classes.plainToClassInstance(instance, msg.body)
                             } else {
-                                instance = plainToClass(event.options.fn, msg.body);
+                                instance = Classes.plainToClass(event.options.fn, msg.body);
                             }
 
                             let result = await old.call(this, instance, msg);

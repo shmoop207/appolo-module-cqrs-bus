@@ -1,7 +1,6 @@
 import {define, singleton, inject, init, Define, Injector} from '@appolo/inject'
 import {EventDispatcher, IEventOptions} from '@appolo/events'
 import {App, Discovery} from '@appolo/engine'
-import {Classes} from '@appolo/utils'
 import {Command, ICommandCtr} from "../interfaces/ICommand";
 import {Logger} from "@appolo/logger";
 import {IHandlerMetadata, IHandlerMetaIndex} from "../interfaces/IHandlerMetadata";
@@ -9,8 +8,7 @@ import {BusProvider, IHandlerMetadataOptions, IPublishProviderOptions} from "@ap
 import {IOptions} from "../interfaces/IOptions";
 import {IQueryCtr, Query} from "../interfaces/IQuery";
 import {Event, IEventCtr} from "../interfaces/IEvent";
-import {Reflector} from "@appolo/utils";
-import {plainToClass, classToPlain} from 'class-transformer';
+import {Reflector,Classes} from "@appolo/utils";
 
 
 export abstract class BaseBus {
@@ -49,7 +47,7 @@ export abstract class BaseBus {
 
         let commandOptions = Reflector.getFnMetadata<IHandlerMetadataOptions>(this.Symbol, fn.constructor);
 
-        let dto = {type, ...params, ...commandOptions, data: classToPlain(fn)}
+        let dto = {type,  ...commandOptions ,...params, data: Classes.classToPlain(fn)}
 
         if (this.moduleOptions.namespace && dto.type.split(".").length == 1 && !dto.routingKey) {
             dto.type = `${this.moduleOptions.namespace}.${dto.type}`;
