@@ -24,6 +24,10 @@ export abstract class BaseEvent<T extends { [index: string]: any }> {
         return {...this._params}
     }
 
+    public get params(): T {
+        return this._params;
+    }
+
     public publish() {
         return this.eventsBus.publish(this)
     }

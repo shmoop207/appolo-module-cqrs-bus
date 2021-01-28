@@ -15,6 +15,9 @@ class BaseCommand {
     toJSON() {
         return Object.assign({}, this._params);
     }
+    get params() {
+        return this._params;
+    }
     exec() {
         return this.commandsBus.execute(this);
     }

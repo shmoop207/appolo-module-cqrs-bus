@@ -24,6 +24,10 @@ export abstract class BaseCommand<T extends { [index: string]: any }> {
         return {...this._params}
     }
 
+    public get params(): T {
+        return this._params;
+    }
+
     public exec() {
         return this.commandsBus.execute(this)
     }

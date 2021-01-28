@@ -15,6 +15,9 @@ class BaseEvent {
     toJSON() {
         return Object.assign({}, this._params);
     }
+    get params() {
+        return this._params;
+    }
     publish() {
         return this.eventsBus.publish(this);
     }
