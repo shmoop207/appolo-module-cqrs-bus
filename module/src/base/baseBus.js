@@ -27,6 +27,10 @@ class BaseBus {
         }
         return dto;
     }
+    create(klass, ...runtimeArgs) {
+        let instance = this.injector.wire(klass, runtimeArgs);
+        return instance;
+    }
 }
 tslib_1.__decorate([
     inject_1.inject(),

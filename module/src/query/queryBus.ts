@@ -15,9 +15,12 @@ export class QueryBus extends BaseBus {
 
     protected readonly Symbol = QueryHandlerSymbol;
 
+
     public  query<T>(query: Query, options: Partial<IPublishProviderOptions> = {}): Promise<T> {
 
         return this.requestFromBus(query, options)
     }
+
+
 
 }

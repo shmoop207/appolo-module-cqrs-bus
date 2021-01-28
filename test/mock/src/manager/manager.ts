@@ -24,7 +24,7 @@ export class Manager {
     }
 
     public async getData() {
-      let result =   await this.queryBus.query<string>(new SomeQuery())
+        let result = await this.queryBus.create(SomeQuery).query();
 
         return result
     }

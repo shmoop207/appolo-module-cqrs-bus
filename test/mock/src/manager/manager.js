@@ -12,7 +12,7 @@ let Manager = class Manager {
         await this.commandsBus.execute(new someCommand_1.SomeCommand("aa"));
     }
     async getData() {
-        let result = await this.queryBus.query(new someQuery_1.SomeQuery());
+        let result = await this.queryBus.create(someQuery_1.SomeQuery).query();
         return result;
     }
 };

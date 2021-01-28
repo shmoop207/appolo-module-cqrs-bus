@@ -8,7 +8,7 @@ import {BusProvider, IHandlerMetadataOptions, IPublishProviderOptions} from "@ap
 import {IOptions} from "../interfaces/IOptions";
 import {IQueryCtr, Query} from "../interfaces/IQuery";
 import {Event, IEventCtr} from "../interfaces/IEvent";
-import {Reflector,Classes} from "@appolo/utils";
+import {Reflector, Classes} from "@appolo/utils";
 
 
 export abstract class BaseBus {
@@ -19,6 +19,7 @@ export abstract class BaseBus {
     @inject() protected discovery: Discovery;
     @inject() protected logger: Logger;
     @inject() protected busProvider: BusProvider;
+
 
     protected abstract readonly Symbol: string
 
@@ -46,13 +47,19 @@ export abstract class BaseBus {
 
         let commandOptions = Reflector.getFnMetadata<IHandlerMetadataOptions>(this.Symbol, fn.constructor);
 
-        let dto = {type,  ...commandOptions ,...params, data: Classes.classToPlain(fn)}
+        let dto = {type, ...commandOptions, ...params, data: Classes.classToPlain(fn)}
 
         if (this.moduleOptions.namespace && dto.type.split(".").length == 1 && !dto.routingKey) {
             dto.type = `${this.moduleOptions.namespace}.${dto.type}`;
         }
 
         return dto;
+    }
+
+    public create<T extends new (...args: any) => any>(klass: T, ...runtimeArgs: ConstructorParameters<T>): InstanceType<T> {
+        let instance = this.injector.wire(klass, runtimeArgs);
+
+        return instance;
     }
 
 }
