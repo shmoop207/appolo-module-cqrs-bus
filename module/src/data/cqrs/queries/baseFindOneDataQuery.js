@@ -14,14 +14,14 @@ class BaseFindOneDataQuery extends __1.BaseQuery {
         return this;
     }
     field(key, value) {
-        return this.fields({ [key]: value });
+        return this.fields({ [key]: value !== null && value !== void 0 ? value : 1 });
     }
     fields(value) {
         this._params.fields = Object.assign(this._params.fields || {}, value);
         return this;
     }
     filter(key, value) {
-        return this.filters({ [key]: value });
+        return this.filters({ [key]: value !== null && value !== void 0 ? value : 1 });
     }
     filters(value) {
         this._params.filter = Object.assign(this._params.filter || {}, value);
@@ -39,7 +39,7 @@ class BaseFindOneDataQuery extends __1.BaseQuery {
         return this;
     }
     lean(value = true) {
-        this._params.lean = true;
+        this._params.lean = value;
         return this;
     }
 }

@@ -7,14 +7,14 @@ class BaseGetAllDataQuery extends __1.BaseQuery {
         super(params);
     }
     sort(key, value) {
-        return this.sorts({ [key]: value | 1 });
+        return this.sorts({ [key]: value !== null && value !== void 0 ? value : 1 });
     }
     sorts(value) {
         this._params.sort = Object.assign(this._params.sort || {}, value);
         return this;
     }
     field(key, value) {
-        return this.fields({ [key]: value || 1 });
+        return this.fields({ [key]: value !== null && value !== void 0 ? value : 1 });
     }
     fields(value) {
         this._params.fields = Object.assign(this._params.fields || {}, value);

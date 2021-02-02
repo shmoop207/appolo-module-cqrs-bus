@@ -13,7 +13,7 @@ export abstract class BaseGetAllDataQuery<T> extends BaseQuery<IGetAllParams<T>,
     }
 
     public sort(key: keyof Partial<T>, value?: any): this {
-        return this.sorts({[key]: value | 1} as ICrudItemParams<T>)
+        return this.sorts({[key]: value ?? 1} as ICrudItemParams<T>)
     }
 
     public sorts(value: string | CrudItemParams<T>): this {
@@ -24,7 +24,7 @@ export abstract class BaseGetAllDataQuery<T> extends BaseQuery<IGetAllParams<T>,
     }
 
     public field(key: keyof Partial<T>, value?: any): this {
-        return this.fields({[key]: value || 1} as ICrudItemParams<T>)
+        return this.fields({[key]: value ?? 1} as ICrudItemParams<T>)
     }
 
     public fields(value: ICrudItemParams<T>): this {

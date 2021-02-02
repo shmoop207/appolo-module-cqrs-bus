@@ -1,11 +1,13 @@
 import {BaseCqrsCrud} from "./baseCqrsCrud";
 import {BaseGetAllDataQuery} from "./baseGetAllDataQuery";
 import {BaseFindOneDataQuery} from "./baseFindOneDataQuery";
-import {query} from "../../../../../index";
+import {command, query} from "../../../../../index";
 import {IBaseCrudManager} from "../../interfaces/IBaseCrudManager";
 import {BaseCreateDataQuery} from "./baseCreateDataQuery";
 import {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./baseUpdateDataQuery";
 import {BaseDeleteDataCommand, BaseDeleteDataQuery} from "./baseDeleteDataQuery";
+import {ICommandCtr} from "../../../interfaces/ICommand";
+import {IQueryCtr} from "../../../interfaces/IQuery";
 
 export function cqrsCrud(crud: BaseCqrsCrud<any>, options?: {}): (fn: Function) => void {
 
@@ -48,17 +50,17 @@ export function cqrsCrud(crud: BaseCqrsCrud<any>, options?: {}): (fn: Function) 
             return this.deleteById(id, hard);
         }
 
-        query({fn: crud.getFindOne()})(fn.prototype, "cqrsGetOneQuery");
-        query({fn: crud.getAll()})(fn.prototype, "cqrsGetAllQuery");
+        query({fn: crud.getFindOne().constructor as IQueryCtr})(fn.prototype, "cqrsGetOneQuery");
+        query({fn: crud.getAll().constructor as IQueryCtr})(fn.prototype, "cqrsGetAllQuery");
 
-        query({fn: crud.create()})(fn.prototype, "cqrsCreateQuery");
-        query({fn: crud.createCommand()})(fn.prototype, "cqrsCreateCommand");
+        query({fn: crud.create().constructor as IQueryCtr})(fn.prototype, "cqrsCreateQuery");
+        command({fn: crud.createCommand().constructor as ICommandCtr})(fn.prototype, "cqrsCreateCommand");
 
-        query({fn: crud.update()})(fn.prototype, "cqrsUpdateQuery");
-        query({fn: crud.updateCommand()})(fn.prototype, "cqrsUpdateCommand");
+        query({fn: crud.update().constructor as IQueryCtr})(fn.prototype, "cqrsUpdateQuery");
+        command({fn: crud.updateCommand().constructor as ICommandCtr})(fn.prototype, "cqrsUpdateCommand");
 
-        query({fn: crud.delete()})(fn.prototype, "cqrsDeleteQuery");
-        query({fn: crud.deleteCommand()})(fn.prototype, "cqrsDeleteCommand");
+        query({fn: crud.delete().constructor as IQueryCtr})(fn.prototype, "cqrsDeleteQuery");
+        command({fn: crud.deleteCommand().constructor as ICommandCtr})(fn.prototype, "cqrsDeleteCommand");
 
     }
 }

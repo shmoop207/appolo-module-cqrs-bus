@@ -15,49 +15,49 @@ class BaseCqrsCrud {
         };
         inject_1.define()(temp);
         __1.query(Object.assign({ fn: temp, type: `${this.Namespace}.getAllQuery` }, options))(temp);
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
-    getFindOne(options) {
+    findOne(options) {
         let temp = class extends baseFindOneDataQuery_1.BaseFindOneDataQuery {
         };
         __1.query(Object.assign({ fn: temp, type: `${this.Namespace}.getFindOne` }, options))(temp);
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
     create(options) {
         let temp = class extends baseCreateDataQuery_1.BaseCreateDataQuery {
         };
         __1.query(Object.assign({ fn: temp, type: `${this.Namespace}.createQuery` }, options))(temp);
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
     createCommand(options) {
         let temp = class extends baseCreateDataQuery_1.BaseCreateDataCommand {
         };
         __1.command(Object.assign({ fn: temp, type: `${this.Namespace}.createCommand` }, options))(temp);
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
     update(options) {
         let temp = class extends baseUpdateDataQuery_1.BaseUpdateDataQuery {
         };
         __1.command(Object.assign({ fn: temp, type: `${this.Namespace}.updateQuery` }, options))(temp);
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
     updateCommand(options) {
         let temp = class extends baseUpdateDataQuery_1.BaseUpdateDataCommand {
         };
         __1.command(Object.assign({ fn: temp, type: `${this.Namespace}.updateCommand` }, options))(temp);
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
     delete(options) {
         let temp = class extends baseDeleteDataQuery_1.BaseDeleteDataQuery {
         };
         __1.command(Object.assign({ fn: temp, type: `${this.Namespace}.deleteQuery` }, options))(temp);
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
     deleteCommand(options) {
-        let temp = class extends baseDeleteDataQuery_1.BaseDeleteDataQuery {
+        let temp = class extends baseDeleteDataQuery_1.BaseDeleteDataCommand {
         };
         __1.command(Object.assign({ fn: temp, type: `${this.Namespace}.deleteCommand` }, options))(temp);
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 }
 tslib_1.__decorate([

@@ -1,7 +1,7 @@
 import {BaseFindOneDataQuery} from "./baseFindOneDataQuery";
 import {BaseGetAllDataQuery} from "./baseGetAllDataQuery";
 import {BaseCreateDataCommand, BaseCreateDataQuery} from "./baseCreateDataQuery";
-import {BaseDeleteDataQuery} from "./baseDeleteDataQuery";
+import {BaseDeleteDataCommand, BaseDeleteDataQuery} from "./baseDeleteDataQuery";
 import {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./baseUpdateDataQuery";
 import {BaseCommand, BaseQuery, QueryBus, query, command} from "../../../../../"
 import {lazy, Injector, define} from "@appolo/inject";
@@ -12,84 +12,84 @@ export abstract class BaseCqrsCrud<T> {
 
     protected abstract Namespace: string
 
-    public getAll(options?: HandlerOptions) {
+    public getAll(options?: HandlerOptions): BaseGetAllDataQuery<T> {
         let temp = class extends BaseGetAllDataQuery<T> {
 
         }
         define()(temp)
         query({fn: temp, type: `${this.Namespace}.getAllQuery`, ...options})(temp);
 
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 
-    public getFindOne(options?: HandlerOptions) {
+    public findOne(options?: HandlerOptions): BaseFindOneDataQuery<T> {
         let temp = class extends BaseFindOneDataQuery<T> {
 
         }
 
         query({fn: temp, type: `${this.Namespace}.getFindOne`, ...options})(temp);
 
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 
-    public create(options?: HandlerOptions) {
+    public create(options?: HandlerOptions): BaseCreateDataQuery<T> {
         let temp = class extends BaseCreateDataQuery<T> {
 
         }
 
         query({fn: temp, type: `${this.Namespace}.createQuery`, ...options})(temp);
 
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 
-    public createCommand(options?: HandlerOptions) {
+    public createCommand(options?: HandlerOptions): BaseCreateDataCommand<T> {
         let temp = class extends BaseCreateDataCommand<T> {
 
         }
 
         command({fn: temp, type: `${this.Namespace}.createCommand`, ...options})(temp);
 
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 
-    public update(options?: HandlerOptions) {
+    public update(options?: HandlerOptions): BaseUpdateDataQuery<T> {
         let temp = class extends BaseUpdateDataQuery<T> {
 
         }
 
         command({fn: temp, type: `${this.Namespace}.updateQuery`, ...options})(temp);
 
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 
-    public updateCommand(options?: HandlerOptions) {
+    public updateCommand(options?: HandlerOptions): BaseUpdateDataCommand<T> {
         let temp = class extends BaseUpdateDataCommand<T> {
 
         }
 
         command({fn: temp, type: `${this.Namespace}.updateCommand`, ...options})(temp);
 
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 
-    public delete(options?: HandlerOptions) {
+    public delete(options?: HandlerOptions): BaseDeleteDataQuery<T> {
         let temp = class extends BaseDeleteDataQuery<T> {
 
         }
 
         command({fn: temp, type: `${this.Namespace}.deleteQuery`, ...options})(temp);
 
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 
-    public deleteCommand(options?: HandlerOptions) {
-        let temp = class extends BaseDeleteDataQuery<T> {
+    public deleteCommand(options?: HandlerOptions): BaseDeleteDataCommand<T> {
+        let temp = class extends BaseDeleteDataCommand<T> {
 
         }
 
         command({fn: temp, type: `${this.Namespace}.deleteCommand`, ...options})(temp);
 
-        return this.inject ? this.inject.wire(temp) : temp;
+        return this.inject ? this.inject.wire(temp) : new temp();
     }
 }
 

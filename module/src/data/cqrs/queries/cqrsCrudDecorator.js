@@ -34,14 +34,14 @@ function cqrsCrud(crud, options) {
             const { id, hard } = command.toJSON();
             return this.deleteById(id, hard);
         };
-        index_1.query({ fn: crud.getFindOne() })(fn.prototype, "cqrsGetOneQuery");
-        index_1.query({ fn: crud.getAll() })(fn.prototype, "cqrsGetAllQuery");
-        index_1.query({ fn: crud.create() })(fn.prototype, "cqrsCreateQuery");
-        index_1.query({ fn: crud.createCommand() })(fn.prototype, "cqrsCreateCommand");
-        index_1.query({ fn: crud.update() })(fn.prototype, "cqrsUpdateQuery");
-        index_1.query({ fn: crud.updateCommand() })(fn.prototype, "cqrsUpdateCommand");
-        index_1.query({ fn: crud.delete() })(fn.prototype, "cqrsDeleteQuery");
-        index_1.query({ fn: crud.deleteCommand() })(fn.prototype, "cqrsDeleteCommand");
+        index_1.query({ fn: crud.getFindOne().constructor })(fn.prototype, "cqrsGetOneQuery");
+        index_1.query({ fn: crud.getAll().constructor })(fn.prototype, "cqrsGetAllQuery");
+        index_1.query({ fn: crud.create().constructor })(fn.prototype, "cqrsCreateQuery");
+        index_1.command({ fn: crud.createCommand().constructor })(fn.prototype, "cqrsCreateCommand");
+        index_1.query({ fn: crud.update().constructor })(fn.prototype, "cqrsUpdateQuery");
+        index_1.command({ fn: crud.updateCommand().constructor })(fn.prototype, "cqrsUpdateCommand");
+        index_1.query({ fn: crud.delete().constructor })(fn.prototype, "cqrsDeleteQuery");
+        index_1.command({ fn: crud.deleteCommand().constructor })(fn.prototype, "cqrsDeleteCommand");
     };
 }
 exports.cqrsCrud = cqrsCrud;

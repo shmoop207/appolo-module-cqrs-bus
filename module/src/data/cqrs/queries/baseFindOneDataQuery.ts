@@ -18,8 +18,8 @@ export abstract class BaseFindOneDataQuery<T> extends BaseQuery<IFindOneParams<T
         return this;
     }
 
-    public field(key: keyof Partial<T>, value: any): this {
-        return this.fields({[key]: value} as ICrudItemParams<T>)
+    public field(key: keyof Partial<T>, value?: any): this {
+        return this.fields({[key]: value ?? 1} as ICrudItemParams<T>)
     }
 
     public fields(value: ICrudItemParams<T>): this {
@@ -27,8 +27,8 @@ export abstract class BaseFindOneDataQuery<T> extends BaseQuery<IFindOneParams<T
         return this
     }
 
-    public filter(key: keyof Partial<T>, value: any): this {
-        return this.filters({[key]: value} as ICrudItemParams<T>)
+    public filter(key: keyof Partial<T>, value?: any): this {
+        return this.filters({[key]: value ?? 1} as ICrudItemParams<T>)
     }
 
     public filters(value: ICrudItemParams<T>): this {
@@ -53,7 +53,7 @@ export abstract class BaseFindOneDataQuery<T> extends BaseQuery<IFindOneParams<T
     }
 
     public lean(value = true): this {
-        this._params.lean = true
+        this._params.lean = value
         return this
     }
 }

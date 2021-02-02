@@ -10,7 +10,7 @@ interface IBaseDeleteDataQueryParams<T> {
 
 export abstract class BaseDeleteDataQuery<T> extends BaseQuery<IBaseDeleteDataQueryParams<T>, T> {
 
-    public hard(hard: boolean): this {
+    public hard(hard: boolean = true): this {
         this._params.hard = hard;
         return this;
     }
@@ -23,7 +23,7 @@ export abstract class BaseDeleteDataQuery<T> extends BaseQuery<IBaseDeleteDataQu
 
 export abstract class BaseDeleteDataCommand<T> extends BaseCommand<IBaseDeleteDataQueryParams<T>> {
 
-    public hard(hard: boolean): this {
+    public hard(hard: boolean = true): this {
         this._params.hard = hard;
         return this;
     }
