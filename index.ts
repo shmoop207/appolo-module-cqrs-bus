@@ -2,11 +2,11 @@
 import {CqrsModule} from "./module/cqrsModule";
 import {command, query, event} from "./module/src/decorators/decorators"
 import {CommandsBus} from "./module/src/commands/commandsBus"
-import {BaseCommand} from "./module/src/interfaces/ICommand"
-import {BaseEvent} from "./module/src/interfaces/IEvent"
+import {BaseCommand} from "./module/src/commands/baseCommand"
+import {BaseEvent} from "./module/src/events/baseEvent"
 import {EventsBus} from "./module/src/events/eventsBus"
 import {QueryBus} from "./module/src/query/queryBus"
-import {BaseQuery} from "./module/src/interfaces/IQuery"
+import {BaseQuery} from "./module/src/query/baseQuery"
 import {IOptions} from "./module/src/interfaces/IOptions"
 
 export {BaseGetAllDataQuery} from "./module/src/data/cqrs/queries/baseGetAllDataQuery"
@@ -16,7 +16,7 @@ export {BaseCreateDataQuery, BaseCreateDataCommand} from "./module/src/data/cqrs
 export {BaseDeleteDataCommand, BaseDeleteDataQuery} from "./module/src/data/cqrs/queries/baseDeleteDataQuery"
 export {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./module/src/data/cqrs/queries/baseUpdateDataQuery"
 export {BaseCqrsCrud} from "./module/src/data/cqrs/queries/baseCqrsCrud"
-export {cqrsCrud} from "./module/src/data/cqrs/queries/cqrsCrudDecorator"
+export {crudQuery,crudQueryModel} from "./module/src/data/cqrs/queries/cqrsCrudDecorator"
 
 
 export {

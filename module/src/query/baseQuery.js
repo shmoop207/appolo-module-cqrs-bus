@@ -1,12 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseQuery = exports.Query = void 0;
+exports.BaseQuery = void 0;
 const tslib_1 = require("tslib");
 const index_1 = require("@appolo/inject/index");
-const queryBus_1 = require("../query/queryBus");
-class Query {
-}
-exports.Query = Query;
+const queryBus_1 = require("./queryBus");
 class BaseQuery {
     constructor(_params) {
         this._params = _params;
@@ -18,8 +15,8 @@ class BaseQuery {
     get params() {
         return this._params;
     }
-    query() {
-        return this.queryBus.query(this);
+    query(opts = {}) {
+        return this.queryBus.query(this, opts);
     }
 }
 tslib_1.__decorate([
@@ -27,4 +24,4 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", queryBus_1.QueryBus)
 ], BaseQuery.prototype, "queryBus", void 0);
 exports.BaseQuery = BaseQuery;
-//# sourceMappingURL=IQuery.js.map
+//# sourceMappingURL=baseQuery.js.map

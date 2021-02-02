@@ -1,16 +1,6 @@
 import {lazy} from "@appolo/inject/index";
-import {CommandsBus} from "../commands/commandsBus";
-import {EventsBus} from "../events/eventsBus";
-
-export abstract class Event {
-
-}
-
-
-export interface IEventCtr {
-    new(...rest: any[]): Event
-}
-
+import {EventsBus} from "./eventsBus";
+import {IPublishProviderOptions} from "@appolo/bus/index";
 
 export abstract class BaseEvent<T extends { [index: string]: any }> {
 
@@ -28,7 +18,7 @@ export abstract class BaseEvent<T extends { [index: string]: any }> {
         return this._params;
     }
 
-    public publish() {
-        return this.eventsBus.publish(this)
+    public publish(options: Partial<IPublishProviderOptions> = {}) {
+        return this.eventsBus.publish(this,options)
     }
 }

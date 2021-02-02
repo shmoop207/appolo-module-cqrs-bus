@@ -4,8 +4,8 @@ import {App, Discovery} from '@appolo/engine'
 import {Classes, Guid} from '@appolo/utils'
 import {BaseBus} from "../base/baseBus";
 import {QueryHandlerSymbol} from "../decorators/decorators";
-import {IQueryCtr, Query} from "../interfaces/IQuery";
-import {Command} from "../interfaces/ICommand";
+import {IQueryCtr, Query} from "./IQuery";
+import {Command} from "../commands/ICommand";
 import {IHandlerMetadata, IHandlerMetaIndex} from "../interfaces/IHandlerMetadata";
 import {IPublishProviderOptions} from "@appolo/bus/index";
 

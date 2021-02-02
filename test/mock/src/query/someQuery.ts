@@ -1,6 +1,6 @@
 import {query} from "../../../../module/src/decorators/decorators";
 import {define} from "@appolo/inject";
-import {BaseQuery} from "../../../../module/src/interfaces/IQuery";
+import {BaseQuery} from "../../../../index";
 
 @query()
 @define()

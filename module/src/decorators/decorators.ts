@@ -1,10 +1,10 @@
-import {Reflector, Classes} from '@appolo/utils';
+import {Reflector} from '@appolo/utils';
 import {handler, IHandlerMetadataOptions, IMessage, reply} from '@appolo/bus';
 import {IClass} from '@appolo/engine';
-import {Command, ICommandCtr} from "../interfaces/ICommand";
-import {IHandlerMetadata, IHandlerMetaIndex, ISagaMetaIndex} from "../interfaces/IHandlerMetadata";
-import {IEventCtr} from "../interfaces/IEvent";
-import {IQueryCtr} from "../interfaces/IQuery";
+import {IHandlerMetadata, IHandlerMetaIndex} from "../interfaces/IHandlerMetadata";
+import {IEventCtr} from "../events/IEvent";
+import {IQueryCtr} from "../query/IQuery";
+import {ICommandCtr} from "../commands/ICommand";
 
 export const CommandHandlerSymbol = "__CommandHandlerSymbol__"
 export const EventHandlerSymbol = "__EventHandlerSymbol__"

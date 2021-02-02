@@ -1,14 +1,12 @@
 import {define, singleton, inject, init, Define, Injector} from '@appolo/inject'
-import {EventDispatcher, IEventOptions} from '@appolo/events'
 import {App, Discovery} from '@appolo/engine'
-import {Command, ICommandCtr} from "../interfaces/ICommand";
 import {Logger} from "@appolo/logger";
-import {IHandlerMetadata, IHandlerMetaIndex} from "../interfaces/IHandlerMetadata";
 import {BusProvider, IHandlerMetadataOptions, IPublishProviderOptions} from "@appolo/bus";
 import {IOptions} from "../interfaces/IOptions";
-import {IQueryCtr, Query} from "../interfaces/IQuery";
-import {Event, IEventCtr} from "../interfaces/IEvent";
+import {IQueryCtr, Query} from "../query/IQuery";
+import {Event, IEventCtr} from "../events/IEvent";
 import {Reflector, Classes} from "@appolo/utils";
+import {Command} from "../commands/ICommand";
 
 
 export abstract class BaseBus {

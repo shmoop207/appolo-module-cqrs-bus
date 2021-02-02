@@ -6,10 +6,12 @@ import {IBaseCrudManager} from "../../interfaces/IBaseCrudManager";
 import {BaseCreateDataQuery} from "./baseCreateDataQuery";
 import {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./baseUpdateDataQuery";
 import {BaseDeleteDataCommand, BaseDeleteDataQuery} from "./baseDeleteDataQuery";
-import {ICommandCtr} from "../../../interfaces/ICommand";
-import {IQueryCtr} from "../../../interfaces/IQuery";
+import {ICommandCtr} from "../../../commands/ICommand";
+import {IQueryCtr} from "../../../query/IQuery";
+import {define} from "@appolo/inject";
+import {Reflector} from "@appolo/utils";
 
-export function cqrsCrud(crud: BaseCqrsCrud<any>, options?: {}): (fn: Function) => void {
+export function crudQuery(crud: BaseCqrsCrud<any>, options?: {}): (fn: Function) => void {
 
     return function (fn: Function) {
         fn.prototype["cqrsGetOneQuery"] = async function (this: IBaseCrudManager<any>, command: BaseFindOneDataQuery<any>) {
@@ -50,7 +52,7 @@ export function cqrsCrud(crud: BaseCqrsCrud<any>, options?: {}): (fn: Function) 
             return this.deleteById(id, hard);
         }
 
-        query({fn: crud.getFindOne().constructor as IQueryCtr})(fn.prototype, "cqrsGetOneQuery");
+        query({fn: crud.findOne().constructor as IQueryCtr})(fn.prototype, "cqrsGetOneQuery");
         query({fn: crud.getAll().constructor as IQueryCtr})(fn.prototype, "cqrsGetAllQuery");
 
         query({fn: crud.create().constructor as IQueryCtr})(fn.prototype, "cqrsCreateQuery");
@@ -62,5 +64,20 @@ export function cqrsCrud(crud: BaseCqrsCrud<any>, options?: {}): (fn: Function) 
         query({fn: crud.delete().constructor as IQueryCtr})(fn.prototype, "cqrsDeleteQuery");
         command({fn: crud.deleteCommand().constructor as ICommandCtr})(fn.prototype, "cqrsDeleteCommand");
 
+    }
+}
+
+export const CqrsCrudModelSymbol = "__CqrsCrudModelSymbol__"
+
+export interface ICqrsCrudModelMetadata {
+    namespace: string
+}
+
+export function crudQueryModel(namespace: string): (fn: Function) => void {
+
+    return function (fn: Function) {
+        define()(fn)
+        let dto:ICqrsCrudModelMetadata = {namespace}
+        Reflector.setMetadata(CqrsCrudModelSymbol, dto, fn);
     }
 }

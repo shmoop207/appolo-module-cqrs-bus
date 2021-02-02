@@ -6,18 +6,24 @@ import {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./baseUpdateDataQuery"
 import {BaseCommand, BaseQuery, QueryBus, query, command} from "../../../../../"
 import {lazy, Injector, define} from "@appolo/inject";
 import {HandlerOptions} from "../../../decorators/decorators";
+import {Reflector} from "@appolo/utils";
+import {CqrsCrudModelSymbol, ICqrsCrudModelMetadata} from "./cqrsCrudDecorator";
 
 export abstract class BaseCqrsCrud<T> {
     @lazy() protected inject: Injector
 
-    protected abstract Namespace: string
+    private _getNamespace():string{
+        let {namespace} = Reflector.getFnMetadata<ICqrsCrudModelMetadata>(CqrsCrudModelSymbol, this.constructor)
+        return namespace
+    }
 
     public getAll(options?: HandlerOptions): BaseGetAllDataQuery<T> {
         let temp = class extends BaseGetAllDataQuery<T> {
 
         }
+
         define()(temp)
-        query({fn: temp, type: `${this.Namespace}.getAllQuery`, ...options})(temp);
+        query({fn: temp, type: `${this._getNamespace()}.GetAllQuery`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
     }
@@ -27,7 +33,7 @@ export abstract class BaseCqrsCrud<T> {
 
         }
 
-        query({fn: temp, type: `${this.Namespace}.getFindOne`, ...options})(temp);
+        query({fn: temp, type: `${this._getNamespace()}.FindOne`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
     }
@@ -37,7 +43,7 @@ export abstract class BaseCqrsCrud<T> {
 
         }
 
-        query({fn: temp, type: `${this.Namespace}.createQuery`, ...options})(temp);
+        query({fn: temp, type: `${this._getNamespace()}.CreateQuery`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
     }
@@ -47,7 +53,7 @@ export abstract class BaseCqrsCrud<T> {
 
         }
 
-        command({fn: temp, type: `${this.Namespace}.createCommand`, ...options})(temp);
+        command({fn: temp, type: `${this._getNamespace()}.CreateCommand`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
     }
@@ -57,7 +63,7 @@ export abstract class BaseCqrsCrud<T> {
 
         }
 
-        command({fn: temp, type: `${this.Namespace}.updateQuery`, ...options})(temp);
+        query({fn: temp, type: `${this._getNamespace()}.UpdateQuery`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
     }
@@ -67,7 +73,7 @@ export abstract class BaseCqrsCrud<T> {
 
         }
 
-        command({fn: temp, type: `${this.Namespace}.updateCommand`, ...options})(temp);
+        command({fn: temp, type: `${this._getNamespace()}.UpdateCommand`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
     }
@@ -77,7 +83,7 @@ export abstract class BaseCqrsCrud<T> {
 
         }
 
-        command({fn: temp, type: `${this.Namespace}.deleteQuery`, ...options})(temp);
+        query({fn: temp, type: `${this._getNamespace()}.DeleteQuery`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
     }
@@ -87,7 +93,7 @@ export abstract class BaseCqrsCrud<T> {
 
         }
 
-        command({fn: temp, type: `${this.Namespace}.deleteCommand`, ...options})(temp);
+        command({fn: temp, type: `${this._getNamespace()}.DeleteCommand`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
     }

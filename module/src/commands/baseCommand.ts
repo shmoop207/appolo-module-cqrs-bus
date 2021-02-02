@@ -1,15 +1,7 @@
-import {CommandsBus} from "../commands/commandsBus";
+import {CommandsBus} from "./commandsBus";
 import {lazy} from "@appolo/inject";
+import {IPublishProviderOptions} from "@appolo/bus/index";
 
-export abstract class Command {
-
-
-}
-
-
-export interface ICommandCtr {
-    new(...rest: any[]): Command
-}
 
 
 export abstract class BaseCommand<T extends { [index: string]: any }> {
@@ -28,7 +20,7 @@ export abstract class BaseCommand<T extends { [index: string]: any }> {
         return this._params;
     }
 
-    public exec() {
-        return this.commandsBus.execute(this)
+    public exec(options: Partial<IPublishProviderOptions> = {}) {
+        return this.commandsBus.execute(this, options)
     }
 }
