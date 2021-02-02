@@ -9,6 +9,15 @@ import {QueryBus} from "./module/src/query/queryBus"
 import {BaseQuery} from "./module/src/interfaces/IQuery"
 import {IOptions} from "./module/src/interfaces/IOptions"
 
+export {BaseGetAllDataQuery} from "./module/src/data/cqrs/queries/baseGetAllDataQuery"
+export {BaseFindOneDataQuery} from "./module/src/data/cqrs/queries/baseFindOneDataQuery"
+
+export {BaseCreateDataQuery, BaseCreateDataCommand} from "./module/src/data/cqrs/queries/baseCreateDataQuery"
+export {BaseDeleteDataCommand, BaseDeleteDataQuery} from "./module/src/data/cqrs/queries/baseDeleteDataQuery"
+export {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./module/src/data/cqrs/queries/baseUpdateDataQuery"
+export {BaseCqrsCrud} from "./module/src/data/cqrs/queries/baseCqrsCrud"
+export {cqrsCrud} from "./module/src/data/cqrs/queries/cqrsCrudDecorator"
+
 
 export {
     CqrsModule,

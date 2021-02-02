@@ -68,21 +68,4 @@ function query(opts = {}) {
     return defineHandler(opts, exports.QueryHandlerSymbol);
 }
 exports.query = query;
-// export function saga(events: (string | IEventCtr)[], identifier?: (event: Event) => boolean) {
-//     return function (target: any, propertyKey: string, descriptor?: PropertyDescriptor) {
-//         let data = Reflector.getFnMetadata<ISagaMetaIndex>(SagaSymbol, target.constructor, {})
-//
-//         if (!data[propertyKey]) {
-//             data[propertyKey] = {
-//                 items: [],
-//                 propertyKey,
-//                 descriptor
-//             };
-//         }
-//
-//         events = events.map(event => typeof event == "string" ? event : Classes.className(event as Function))
-//
-//         data[propertyKey].items.push({events: events as string[], identifier})
-//     };
-// }
 //# sourceMappingURL=decorators.js.map
