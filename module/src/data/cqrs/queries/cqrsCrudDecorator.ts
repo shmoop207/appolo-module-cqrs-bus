@@ -11,7 +11,7 @@ import {IQueryCtr} from "../../../query/IQuery";
 import {define} from "@appolo/inject";
 import {Reflector} from "@appolo/utils";
 
-export function crudQuery(crud: BaseCqrsCrud<any>, options?: {}): (fn: Function) => void {
+export function crudQuery(crudFn: { new(...args: any[]): BaseCqrsCrud<any> }, options?: {}): (fn: Function) => void {
 
     return function (fn: Function) {
         fn.prototype["cqrsGetOneQuery"] = async function (this: IBaseCrudManager<any>, command: BaseFindOneDataQuery<any>) {
@@ -52,6 +52,8 @@ export function crudQuery(crud: BaseCqrsCrud<any>, options?: {}): (fn: Function)
             return this.deleteById(id, hard);
         }
 
+        let crud = new crudFn();
+
         query({fn: crud.findOne().constructor as IQueryCtr})(fn.prototype, "cqrsGetOneQuery");
         query({fn: crud.getAll().constructor as IQueryCtr})(fn.prototype, "cqrsGetAllQuery");
 
@@ -77,7 +79,7 @@ export function crudQueryModel(namespace: string): (fn: Function) => void {
 
     return function (fn: Function) {
         define()(fn)
-        let dto:ICqrsCrudModelMetadata = {namespace}
+        let dto: ICqrsCrudModelMetadata = {namespace}
         Reflector.setMetadata(CqrsCrudModelSymbol, dto, fn);
     }
 }

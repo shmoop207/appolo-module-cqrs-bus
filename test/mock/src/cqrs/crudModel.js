@@ -17,7 +17,7 @@ let CrudModelManager = class CrudModelManager {
 };
 CrudModelManager = tslib_1.__decorate([
     inject_1.define(),
-    index_1.crudQuery(new CrudModel())
+    index_1.crudQuery(CrudModel)
 ], CrudModelManager);
 exports.CrudModelManager = CrudModelManager;
 //# sourceMappingURL=crudModel.js.map

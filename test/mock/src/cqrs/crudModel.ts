@@ -7,9 +7,9 @@ export class CrudModel extends BaseCqrsCrud<{ name: string }> {
 }
 
 @define()
-@crudQuery(new CrudModel())
+@crudQuery(CrudModel)
 export class CrudModelManager {
-    public getAll(options:any) {
-        return {results: [{name: options.filter.name ?"aaa": "bbb"}]}
+    public getAll(options: any) {
+        return {results: [{name: options.filter.name ? "aaa" : "bbb"}]}
     }
 }

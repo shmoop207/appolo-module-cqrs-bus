@@ -5,7 +5,7 @@ const tslib_1 = require("tslib");
 const index_1 = require("../../../../../index");
 const inject_1 = require("@appolo/inject");
 const utils_1 = require("@appolo/utils");
-function crudQuery(crud, options) {
+function crudQuery(crudFn, options) {
     return function (fn) {
         fn.prototype["cqrsGetOneQuery"] = async function (command) {
             let results = await this.findOne(command.toJSON());
@@ -36,6 +36,7 @@ function crudQuery(crud, options) {
             const { id, hard } = command.toJSON();
             return this.deleteById(id, hard);
         };
+        let crud = new crudFn();
         index_1.query({ fn: crud.findOne().constructor })(fn.prototype, "cqrsGetOneQuery");
         index_1.query({ fn: crud.getAll().constructor })(fn.prototype, "cqrsGetAllQuery");
         index_1.query({ fn: crud.create().constructor })(fn.prototype, "cqrsCreateQuery");
