@@ -1,6 +1,6 @@
 {
   "name": "@appolo/cqrs-bus",
-  "version": "8.0.12",
+  "version": "8.0.13",
   "description": "appolo cqrs module",
   "keywords": [
     "appolo"
