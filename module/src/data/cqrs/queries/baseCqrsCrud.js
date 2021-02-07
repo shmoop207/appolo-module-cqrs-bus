@@ -72,6 +72,20 @@ class BaseCqrsCrud {
         __1.command(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.Command.#`, type: `${this._getNamespace()}.DeleteCommand` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }
+    updateAll(options) {
+        let temp = class extends baseUpdateDataQuery_1.BaseUpdateAllDataQuery {
+        };
+        inject_1.define()(temp);
+        __1.query(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.Query.#`, type: `${this._getNamespace()}.UpdateAllQuery` }, options))(temp);
+        return this.inject ? this.inject.wire(temp) : new temp();
+    }
+    updateAllCommand(options) {
+        let temp = class extends baseUpdateDataQuery_1.BaseUpdateAllDataCommand {
+        };
+        inject_1.define()(temp);
+        __1.command(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.Command.#`, type: `${this._getNamespace()}.UpdateAllCommand` }, options))(temp);
+        return this.inject ? this.inject.wire(temp) : new temp();
+    }
 }
 tslib_1.__decorate([
     inject_1.lazy(),

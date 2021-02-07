@@ -4,7 +4,12 @@ import {BaseFindOneDataQuery} from "./baseFindOneDataQuery";
 import {command, query} from "../../../../../index";
 import {IBaseCrudManager} from "../../interfaces/IBaseCrudManager";
 import {BaseCreateDataQuery} from "./baseCreateDataQuery";
-import {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./baseUpdateDataQuery";
+import {
+    BaseUpdateAllDataCommand,
+    BaseUpdateAllDataQuery,
+    BaseUpdateDataCommand,
+    BaseUpdateDataQuery
+} from "./baseUpdateDataQuery";
 import {BaseDeleteDataCommand, BaseDeleteDataQuery} from "./baseDeleteDataQuery";
 import {ICommandCtr} from "../../../commands/ICommand";
 import {IQueryCtr} from "../../../query/IQuery";
@@ -24,21 +29,21 @@ export function crudQuery(crudFn: { new(...args: any[]): BaseCqrsCrud<any> }, op
         }
 
         fn.prototype["cqrsCreateQuery"] = async function (this: IBaseCrudManager<any>, command: BaseCreateDataQuery<any>) {
-            return this.create(command.toJSON());
+            return this.create(command.toJSON().data);
         }
         fn.prototype["cqrsCreateCommand"] = async function (this: IBaseCrudManager<any>, command: BaseCreateDataQuery<any>) {
-            return this.create(command.toJSON());
+            return this.create(command.toJSON().data);
         }
 
         fn.prototype["cqrsUpdateQuery"] = async function (this: IBaseCrudManager<any>, command: BaseUpdateDataQuery<any>) {
-            const {id, ...rest} = command.toJSON()
+            const {id, data} = command.toJSON()
 
-            return this.updateById(id, rest);
+            return this.updateById(id, data);
         }
         fn.prototype["cqrsUpdateCommand"] = async function (this: IBaseCrudManager<any>, command: BaseUpdateDataCommand<any>) {
-            const {id, ...rest} = command.toJSON()
+            const {id, data} = command.toJSON()
 
-            return this.updateById(id, rest);
+            return this.updateById(id, data);
         }
 
         fn.prototype["cqrsDeleteQuery"] = async function (this: IBaseCrudManager<any>, command: BaseDeleteDataQuery<any>) {
@@ -50,6 +55,17 @@ export function crudQuery(crudFn: { new(...args: any[]): BaseCqrsCrud<any> }, op
             const {id, hard} = command.toJSON()
 
             return this.deleteById(id, hard);
+        }
+
+        fn.prototype["cqrsUpdateAllQuery"] = async function (this: IBaseCrudManager<any>, command: BaseUpdateAllDataQuery<any>) {
+            const {filter, data} = command.toJSON()
+
+            return this.updateAll(filter, data);
+        }
+        fn.prototype["cqrsUpdateAllCommand"] = async function (this: IBaseCrudManager<any>, command: BaseUpdateAllDataCommand<any>) {
+            const {filter, data} = command.toJSON()
+
+            return this.updateAll(filter, data);
         }
 
         let crud = new crudFn();
@@ -65,6 +81,9 @@ export function crudQuery(crudFn: { new(...args: any[]): BaseCqrsCrud<any> }, op
 
         query({fn: crud.delete().constructor as IQueryCtr})(fn.prototype, "cqrsDeleteQuery");
         command({fn: crud.deleteCommand().constructor as ICommandCtr})(fn.prototype, "cqrsDeleteCommand");
+
+        query({fn: crud.updateAll().constructor as IQueryCtr})(fn.prototype, "cqrsUpdateAllQuery");
+        command({fn: crud.updateAllCommand().constructor as ICommandCtr})(fn.prototype, "cqrsUpdateAllCommand");
 
     }
 }

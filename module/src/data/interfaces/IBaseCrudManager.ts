@@ -1,4 +1,5 @@
 import {IGetAllParams} from "./IGetAllParams";
+import {CrudItemParams} from "../cqrs/queries/baseGetAllDataQuery";
 
 export interface IBaseCrudManager<K> {
     getById(id: string, params: Pick<IGetAllParams<K>, "fields" | "populate" | "lean">): Promise<K>
@@ -17,6 +18,9 @@ export interface IBaseCrudManager<K> {
 
 
     deleteById(id: string, hard ?: boolean): Promise<void>
+
+    updateAll(query: CrudItemParams<K>|string, update: Partial<K>): Promise<void>
+
 
 
 }

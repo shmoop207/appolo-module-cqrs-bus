@@ -2,7 +2,12 @@ import {BaseFindOneDataQuery} from "./baseFindOneDataQuery";
 import {BaseGetAllDataQuery} from "./baseGetAllDataQuery";
 import {BaseCreateDataCommand, BaseCreateDataQuery} from "./baseCreateDataQuery";
 import {BaseDeleteDataCommand, BaseDeleteDataQuery} from "./baseDeleteDataQuery";
-import {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./baseUpdateDataQuery";
+import {
+    BaseUpdateAllDataCommand,
+    BaseUpdateAllDataQuery,
+    BaseUpdateDataCommand,
+    BaseUpdateDataQuery
+} from "./baseUpdateDataQuery";
 import {BaseCommand, BaseQuery, QueryBus, query, command} from "../../../../../"
 import {lazy, Injector, define} from "@appolo/inject";
 import {HandlerOptions} from "../../../decorators/decorators";
@@ -125,6 +130,35 @@ export abstract class BaseCqrsCrud<T> {
             fn: temp,
             routingKey: `${this._getNamespace()}.Command.#`,
             type: `${this._getNamespace()}.DeleteCommand`, ...options
+        })(temp);
+
+        return this.inject ? this.inject.wire(temp) : new temp();
+    }
+
+
+    public updateAll(options?: HandlerOptions): BaseUpdateAllDataQuery<T> {
+        let temp = class extends BaseUpdateAllDataQuery<T> {
+
+        }
+        define()(temp)
+        query({
+            fn: temp,
+            routingKey: `${this._getNamespace()}.Query.#`,
+            type: `${this._getNamespace()}.UpdateAllQuery`, ...options
+        })(temp);
+
+        return this.inject ? this.inject.wire(temp) : new temp();
+    }
+
+    public updateAllCommand(options?: HandlerOptions): BaseUpdateAllDataCommand<T> {
+        let temp = class extends BaseUpdateAllDataCommand<T> {
+
+        }
+        define()(temp)
+        command({
+            fn: temp,
+            routingKey: `${this._getNamespace()}.Command.#`,
+            type: `${this._getNamespace()}.UpdateAllCommand`, ...options
         })(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.crudQueryModel = exports.CqrsCrudModelSymbol = exports.crudQuery = void 0;
-const tslib_1 = require("tslib");
 const index_1 = require("../../../../../index");
 const inject_1 = require("@appolo/inject");
 const utils_1 = require("@appolo/utils");
@@ -15,18 +14,18 @@ function crudQuery(crudFn, options) {
             return this.getAll(command.toJSON());
         };
         fn.prototype["cqrsCreateQuery"] = async function (command) {
-            return this.create(command.toJSON());
+            return this.create(command.toJSON().data);
         };
         fn.prototype["cqrsCreateCommand"] = async function (command) {
-            return this.create(command.toJSON());
+            return this.create(command.toJSON().data);
         };
         fn.prototype["cqrsUpdateQuery"] = async function (command) {
-            const _a = command.toJSON(), { id } = _a, rest = tslib_1.__rest(_a, ["id"]);
-            return this.updateById(id, rest);
+            const { id, data } = command.toJSON();
+            return this.updateById(id, data);
         };
         fn.prototype["cqrsUpdateCommand"] = async function (command) {
-            const _a = command.toJSON(), { id } = _a, rest = tslib_1.__rest(_a, ["id"]);
-            return this.updateById(id, rest);
+            const { id, data } = command.toJSON();
+            return this.updateById(id, data);
         };
         fn.prototype["cqrsDeleteQuery"] = async function (command) {
             const { id, hard } = command.toJSON();
@@ -35,6 +34,14 @@ function crudQuery(crudFn, options) {
         fn.prototype["cqrsDeleteCommand"] = async function (command) {
             const { id, hard } = command.toJSON();
             return this.deleteById(id, hard);
+        };
+        fn.prototype["cqrsUpdateAllQuery"] = async function (command) {
+            const { filter, data } = command.toJSON();
+            return this.updateAll(filter, data);
+        };
+        fn.prototype["cqrsUpdateAllCommand"] = async function (command) {
+            const { filter, data } = command.toJSON();
+            return this.updateAll(filter, data);
         };
         let crud = new crudFn();
         index_1.query({ fn: crud.findOne().constructor })(fn.prototype, "cqrsGetOneQuery");
@@ -45,6 +52,8 @@ function crudQuery(crudFn, options) {
         index_1.command({ fn: crud.updateCommand().constructor })(fn.prototype, "cqrsUpdateCommand");
         index_1.query({ fn: crud.delete().constructor })(fn.prototype, "cqrsDeleteQuery");
         index_1.command({ fn: crud.deleteCommand().constructor })(fn.prototype, "cqrsDeleteCommand");
+        index_1.query({ fn: crud.updateAll().constructor })(fn.prototype, "cqrsUpdateAllQuery");
+        index_1.command({ fn: crud.updateAllCommand().constructor })(fn.prototype, "cqrsUpdateAllCommand");
     };
 }
 exports.crudQuery = crudQuery;
