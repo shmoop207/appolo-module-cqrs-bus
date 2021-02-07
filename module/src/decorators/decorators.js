@@ -2,12 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.query = exports.event = exports.command = exports.defineHandler = exports.defineClassHandler = exports.SagaSymbol = exports.QueryHandlerSymbol = exports.EventHandlerSymbol = exports.CommandHandlerSymbol = void 0;
 const utils_1 = require("@appolo/utils");
+const inject_1 = require("@appolo/inject");
 exports.CommandHandlerSymbol = "__CommandHandlerSymbol__";
 exports.EventHandlerSymbol = "__EventHandlerSymbol__";
 exports.QueryHandlerSymbol = "__QueryHandlerSymbol__";
 exports.SagaSymbol = "__SagaHandlerSymbol__";
 function defineClassHandler(target, opts, symbol) {
     utils_1.Reflector.setMetadata(symbol, opts, target);
+    if (!inject_1.Util.getClassDefinition(target)) {
+        inject_1.define()(target);
+    }
 }
 exports.defineClassHandler = defineClassHandler;
 function defineHandler(opts, symbol) {

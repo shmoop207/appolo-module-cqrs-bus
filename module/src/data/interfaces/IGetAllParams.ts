@@ -1,5 +1,4 @@
-
-export type ICrudItemParams<T> = { [J in keyof Partial<T>]: any };
+export type ICrudItemParams<T> = { [J in keyof Partial<T> | string]: any };
 
 
 export interface IQueryPopulateOptions {
@@ -15,7 +14,7 @@ export interface IQueryPopulateOptions {
 export interface IGetAllParams<T> {
     page?: number,
     pageSize?: number,
-    sort?: string  | ICrudItemParams<T>,
+    sort?: string | ICrudItemParams<T>,
     filter?: string | ICrudItemParams<T>,
     fields?: string | ICrudItemParams<T>,
     lean?: boolean

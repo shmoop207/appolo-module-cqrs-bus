@@ -1,6 +1,7 @@
 import {Reflector} from '@appolo/utils';
 import {handler, IHandlerMetadataOptions, IMessage, reply} from '@appolo/bus';
 import {IClass} from '@appolo/engine';
+import {Util,define} from '@appolo/inject';
 import {IHandlerMetadata, IHandlerMetaIndex} from "../interfaces/IHandlerMetadata";
 import {IEventCtr} from "../events/IEvent";
 import {IQueryCtr} from "../query/IQuery";
@@ -13,6 +14,10 @@ export const SagaSymbol = "__SagaHandlerSymbol__"
 
 export function defineClassHandler(target: any, opts: { fn?: IClass, type?: string } & IHandlerMetadataOptions, symbol: string) {
     Reflector.setMetadata(symbol, opts, target);
+
+    if(!Util.getClassDefinition(target)){
+        define()(target)
+    }
 }
 
 export function defineHandler(opts: { fn?: IClass, type?: string, delay?: number, expire?: number, headers?: { [index: string]: any } } & IHandlerMetadataOptions, symbol: string) {
