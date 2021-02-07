@@ -26,42 +26,49 @@ class BaseCqrsCrud {
     findOne(options) {
         let temp = class extends baseFindOneDataQuery_1.BaseFindOneDataQuery {
         };
+        inject_1.define()(temp);
         __1.query(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.#`, type: `${this._getNamespace()}.FindOne` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }
     create(options) {
         let temp = class extends baseCreateDataQuery_1.BaseCreateDataQuery {
         };
+        inject_1.define()(temp);
         __1.query(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.#`, type: `${this._getNamespace()}.CreateQuery` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }
     createCommand(options) {
         let temp = class extends baseCreateDataQuery_1.BaseCreateDataCommand {
         };
+        inject_1.define()(temp);
         __1.command(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.#`, type: `${this._getNamespace()}.CreateCommand` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }
     update(options) {
         let temp = class extends baseUpdateDataQuery_1.BaseUpdateDataQuery {
         };
+        inject_1.define()(temp);
         __1.query(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.#`, type: `${this._getNamespace()}.UpdateQuery` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }
     updateCommand(options) {
         let temp = class extends baseUpdateDataQuery_1.BaseUpdateDataCommand {
         };
+        inject_1.define()(temp);
         __1.command(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.#`, type: `${this._getNamespace()}.UpdateCommand` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }
     delete(options) {
         let temp = class extends baseDeleteDataQuery_1.BaseDeleteDataQuery {
         };
+        inject_1.define()(temp);
         __1.query(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.#`, type: `${this._getNamespace()}.DeleteQuery` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }
     deleteCommand(options) {
         let temp = class extends baseDeleteDataQuery_1.BaseDeleteDataCommand {
         };
+        inject_1.define()(temp);
         __1.command(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.#`, type: `${this._getNamespace()}.DeleteCommand` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }

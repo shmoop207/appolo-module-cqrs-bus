@@ -32,7 +32,7 @@ export abstract class BaseCqrsCrud<T> {
         let temp = class extends BaseFindOneDataQuery<T> {
 
         }
-
+        define()(temp)
         query({fn: temp, routingKey:`${this._getNamespace()}.#`, type: `${this._getNamespace()}.FindOne`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
@@ -42,7 +42,7 @@ export abstract class BaseCqrsCrud<T> {
         let temp = class extends BaseCreateDataQuery<T> {
 
         }
-
+        define()(temp)
         query({fn: temp, routingKey:`${this._getNamespace()}.#`,type: `${this._getNamespace()}.CreateQuery`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
@@ -52,7 +52,7 @@ export abstract class BaseCqrsCrud<T> {
         let temp = class extends BaseCreateDataCommand<T> {
 
         }
-
+        define()(temp)
         command({fn: temp,routingKey:`${this._getNamespace()}.#`, type: `${this._getNamespace()}.CreateCommand`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
@@ -62,7 +62,7 @@ export abstract class BaseCqrsCrud<T> {
         let temp = class extends BaseUpdateDataQuery<T> {
 
         }
-
+        define()(temp)
         query({fn: temp,routingKey:`${this._getNamespace()}.#`, type: `${this._getNamespace()}.UpdateQuery`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
@@ -72,7 +72,7 @@ export abstract class BaseCqrsCrud<T> {
         let temp = class extends BaseUpdateDataCommand<T> {
 
         }
-
+        define()(temp)
         command({fn: temp,routingKey:`${this._getNamespace()}.#`, type: `${this._getNamespace()}.UpdateCommand`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
@@ -82,7 +82,7 @@ export abstract class BaseCqrsCrud<T> {
         let temp = class extends BaseDeleteDataQuery<T> {
 
         }
-
+        define()(temp)
         query({fn: temp,routingKey:`${this._getNamespace()}.#`, type: `${this._getNamespace()}.DeleteQuery`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
@@ -92,7 +92,7 @@ export abstract class BaseCqrsCrud<T> {
         let temp = class extends BaseDeleteDataCommand<T> {
 
         }
-
+        define()(temp)
         command({fn: temp,routingKey:`${this._getNamespace()}.#`, type: `${this._getNamespace()}.DeleteCommand`, ...options})(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();
