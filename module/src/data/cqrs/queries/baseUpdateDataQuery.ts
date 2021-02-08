@@ -43,7 +43,7 @@ export abstract class BaseUpdateDataCommand<T> extends BaseCommand<IBaseUpdateDa
 
 }
 
-export abstract class BaseUpdateAllDataQuery<T> extends BaseCommand<IBaseUpdateAllDataQueryParams<T>> {
+export abstract class BaseUpdateAllDataQuery<T> extends BaseQuery<IBaseUpdateAllDataQueryParams<T>, void> {
 
     public data(data: Partial<T>): this {
         this._params.data = data;

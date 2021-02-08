@@ -24,7 +24,7 @@ class BaseUpdateDataCommand extends __1.BaseCommand {
     }
 }
 exports.BaseUpdateDataCommand = BaseUpdateDataCommand;
-class BaseUpdateAllDataQuery extends __1.BaseCommand {
+class BaseUpdateAllDataQuery extends __1.BaseQuery {
     data(data) {
         this._params.data = data;
         return this;
