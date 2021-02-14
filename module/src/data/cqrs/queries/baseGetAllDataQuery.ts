@@ -18,7 +18,7 @@ export abstract class BaseGetAllDataQuery<T> extends BaseQuery<IGetAllParams<T>,
 
     public sorts(value: string | CrudItemParams<T>): this {
 
-        this._params.sort = Object.assign(this._params.sort || {}, value);
+        this._params.sort = Object.assign(this._params.sort || ({} as any), value);
 
         return this
     }
@@ -28,7 +28,7 @@ export abstract class BaseGetAllDataQuery<T> extends BaseQuery<IGetAllParams<T>,
     }
 
     public fields(value: ICrudItemParams<T>): this {
-        this._params.fields = Object.assign(this._params.fields || {}, value);
+        this._params.fields = Object.assign(this._params.fields || ({} as any), value);
         return this
     }
 
@@ -37,7 +37,7 @@ export abstract class BaseGetAllDataQuery<T> extends BaseQuery<IGetAllParams<T>,
     }
 
     public filters(value: ICrudItemParams<T>): this {
-        this._params.filter = Object.assign(this._params.filter || {}, value);
+        this._params.filter = Object.assign(this._params.filter || ({} as any), value);
         return this
     }
 
