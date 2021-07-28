@@ -18,7 +18,13 @@ export abstract class BaseEvent<T extends { [index: string]: any }> {
         return this._params;
     }
 
+    public setParams(value: Partial<T>): this {
+        this._params = Object.assign(this._params, value);
+
+        return this;
+    }
+
     public publish(options: Partial<IPublishProviderOptions> = {}) {
-        return this.eventsBus.publish(this,options)
+        return this.eventsBus.publish(this, options)
     }
 }

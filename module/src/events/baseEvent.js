@@ -15,6 +15,10 @@ class BaseEvent {
     get params() {
         return this._params;
     }
+    setParams(value) {
+        this._params = Object.assign(this._params, value);
+        return this;
+    }
     publish(options = {}) {
         return this.eventsBus.publish(this, options);
     }

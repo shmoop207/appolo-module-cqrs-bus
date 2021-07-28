@@ -20,6 +20,12 @@ export abstract class BaseCommand<T extends { [index: string]: any }> {
         return this._params;
     }
 
+    public setParams(value: Partial<T>): this {
+        this._params = Object.assign(this._params, value);
+
+        return this;
+    }
+
     public exec(options: Partial<IPublishProviderOptions> = {}) {
         return this.commandsBus.execute(this, options)
     }

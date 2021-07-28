@@ -18,6 +18,12 @@ export abstract class BaseQuery<T, K> {
         return this._params;
     }
 
+    public setParams(value: Partial<T>): this {
+        this._params = Object.assign(this._params, value);
+
+        return this;
+    }
+
     public query(opts: Partial<IPublishProviderOptions> = {}): Promise<K> {
         return this.queryBus.query<K>(this, opts)
     }

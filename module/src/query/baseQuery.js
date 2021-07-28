@@ -15,6 +15,10 @@ class BaseQuery {
     get params() {
         return this._params;
     }
+    setParams(value) {
+        this._params = Object.assign(this._params, value);
+        return this;
+    }
     query(opts = {}) {
         return this.queryBus.query(this, opts);
     }
