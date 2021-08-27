@@ -16,7 +16,12 @@ export {BaseCreateDataQuery, BaseCreateDataCommand} from "./module/src/data/cqrs
 export {BaseDeleteDataCommand, BaseDeleteDataQuery} from "./module/src/data/cqrs/queries/baseDeleteDataQuery"
 export {BaseUpdateDataCommand, BaseUpdateDataQuery} from "./module/src/data/cqrs/queries/baseUpdateDataQuery"
 export {BaseCqrsCrud} from "./module/src/data/cqrs/queries/baseCqrsCrud"
-export {crudQuery,crudQueryModel} from "./module/src/data/cqrs/queries/cqrsCrudDecorator"
+export {crudQuery, crudQueryModel} from "./module/src/data/cqrs/queries/cqrsCrudDecorator"
+
+export type ParamsCommand<P> = P extends BaseCommand<infer T> ? T : never;
+export type ParamsEvent<P> = P extends BaseEvent<infer T> ? T : never;
+export type ParamsQuery<P> = P extends BaseQuery<infer T, any> ? T : never;
+export type ResultQuery<P> = P extends BaseQuery<any, infer T> ? T : never;
 
 
 export {
