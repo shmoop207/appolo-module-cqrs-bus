@@ -23,9 +23,9 @@ class BaseEvent {
         return this.eventsBus.publish(this, options);
     }
 }
-tslib_1.__decorate([
-    index_1.lazy(),
-    tslib_1.__metadata("design:type", eventsBus_1.EventsBus)
+(0, tslib_1.__decorate)([
+    (0, index_1.lazy)(),
+    (0, tslib_1.__metadata)("design:type", eventsBus_1.EventsBus)
 ], BaseEvent.prototype, "eventsBus", void 0);
 exports.BaseEvent = BaseEvent;
 //# sourceMappingURL=baseEvent.js.map

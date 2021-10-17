@@ -14,9 +14,9 @@ let QueryBus = class QueryBus extends baseBus_1.BaseBus {
         return this.requestFromBus(query, options);
     }
 };
-QueryBus = tslib_1.__decorate([
-    inject_1.define(),
-    inject_1.singleton()
+QueryBus = (0, tslib_1.__decorate)([
+    (0, inject_1.define)(),
+    (0, inject_1.singleton)()
 ], QueryBus);
 exports.QueryBus = QueryBus;
 //# sourceMappingURL=queryBus.js.map

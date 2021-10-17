@@ -10,7 +10,7 @@ let should = require('chai').should();
 describe("CQRS module Spec", function () {
     let app;
     beforeEach(async () => {
-        app = engine_1.createApp({ root: process.cwd() + '/test/mock/', environment: "production" });
+        app = (0, engine_1.createApp)({ root: process.cwd() + '/test/mock/', environment: "production" });
         app.module.use(bus_1.BusModule.for({
             queue: "bus-test",
             requestQueue: "bus-test-request",

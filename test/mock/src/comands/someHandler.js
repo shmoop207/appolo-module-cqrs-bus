@@ -17,23 +17,23 @@ let SomeHandler = class SomeHandler {
             this.eventsBus.publish(new someEvent3_1.SomeEvent3("dd"))]);
     }
 };
-tslib_1.__decorate([
-    inject_1.inject(),
-    tslib_1.__metadata("design:type", manager_1.Manager)
+(0, tslib_1.__decorate)([
+    (0, inject_1.inject)(),
+    (0, tslib_1.__metadata)("design:type", manager_1.Manager)
 ], SomeHandler.prototype, "manager", void 0);
-tslib_1.__decorate([
-    inject_1.inject(),
-    tslib_1.__metadata("design:type", index_1.EventsBus)
+(0, tslib_1.__decorate)([
+    (0, inject_1.inject)(),
+    (0, tslib_1.__metadata)("design:type", index_1.EventsBus)
 ], SomeHandler.prototype, "eventsBus", void 0);
-tslib_1.__decorate([
-    index_1.command(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [someCommand_1.SomeCommand]),
-    tslib_1.__metadata("design:returntype", Promise)
+(0, tslib_1.__decorate)([
+    (0, index_1.command)(),
+    (0, tslib_1.__metadata)("design:type", Function),
+    (0, tslib_1.__metadata)("design:paramtypes", [someCommand_1.SomeCommand]),
+    (0, tslib_1.__metadata)("design:returntype", Promise)
 ], SomeHandler.prototype, "handleSomeCommand", null);
-SomeHandler = tslib_1.__decorate([
-    inject_1.define(),
-    inject_1.singleton()
+SomeHandler = (0, tslib_1.__decorate)([
+    (0, inject_1.define)(),
+    (0, inject_1.singleton)()
 ], SomeHandler);
 exports.SomeHandler = SomeHandler;
 //# sourceMappingURL=someHandler.js.map

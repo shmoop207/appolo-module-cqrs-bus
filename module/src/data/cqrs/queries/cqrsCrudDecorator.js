@@ -44,23 +44,23 @@ function crudQuery(crudFn, options) {
             return this.updateAll(filter, data);
         };
         let crud = new crudFn();
-        index_1.query({ fn: crud.findOne().constructor })(fn.prototype, "cqrsGetOneQuery");
-        index_1.query({ fn: crud.getAll().constructor })(fn.prototype, "cqrsGetAllQuery");
-        index_1.query({ fn: crud.create().constructor })(fn.prototype, "cqrsCreateQuery");
-        index_1.command({ fn: crud.createCommand().constructor })(fn.prototype, "cqrsCreateCommand");
-        index_1.query({ fn: crud.update().constructor })(fn.prototype, "cqrsUpdateQuery");
-        index_1.command({ fn: crud.updateCommand().constructor })(fn.prototype, "cqrsUpdateCommand");
-        index_1.query({ fn: crud.delete().constructor })(fn.prototype, "cqrsDeleteQuery");
-        index_1.command({ fn: crud.deleteCommand().constructor })(fn.prototype, "cqrsDeleteCommand");
-        index_1.query({ fn: crud.updateAll().constructor })(fn.prototype, "cqrsUpdateAllQuery");
-        index_1.command({ fn: crud.updateAllCommand().constructor })(fn.prototype, "cqrsUpdateAllCommand");
+        (0, index_1.query)({ fn: crud.findOne().constructor })(fn.prototype, "cqrsGetOneQuery");
+        (0, index_1.query)({ fn: crud.getAll().constructor })(fn.prototype, "cqrsGetAllQuery");
+        (0, index_1.query)({ fn: crud.create().constructor })(fn.prototype, "cqrsCreateQuery");
+        (0, index_1.command)({ fn: crud.createCommand().constructor })(fn.prototype, "cqrsCreateCommand");
+        (0, index_1.query)({ fn: crud.update().constructor })(fn.prototype, "cqrsUpdateQuery");
+        (0, index_1.command)({ fn: crud.updateCommand().constructor })(fn.prototype, "cqrsUpdateCommand");
+        (0, index_1.query)({ fn: crud.delete().constructor })(fn.prototype, "cqrsDeleteQuery");
+        (0, index_1.command)({ fn: crud.deleteCommand().constructor })(fn.prototype, "cqrsDeleteCommand");
+        (0, index_1.query)({ fn: crud.updateAll().constructor })(fn.prototype, "cqrsUpdateAllQuery");
+        (0, index_1.command)({ fn: crud.updateAllCommand().constructor })(fn.prototype, "cqrsUpdateAllCommand");
     };
 }
 exports.crudQuery = crudQuery;
 exports.CqrsCrudModelSymbol = "__CqrsCrudModelSymbol__";
 function crudQueryModel(namespace) {
     return function (fn) {
-        inject_1.define()(fn);
+        (0, inject_1.define)()(fn);
         let dto = { namespace };
         utils_1.Reflector.setMetadata(exports.CqrsCrudModelSymbol, dto, fn);
     };

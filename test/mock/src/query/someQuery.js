@@ -7,9 +7,9 @@ const inject_1 = require("@appolo/inject");
 const index_1 = require("../../../../index");
 let SomeQuery = class SomeQuery extends index_1.BaseQuery {
 };
-SomeQuery = tslib_1.__decorate([
-    decorators_1.query(),
-    inject_1.define()
+SomeQuery = (0, tslib_1.__decorate)([
+    (0, decorators_1.query)(),
+    (0, inject_1.define)()
 ], SomeQuery);
 exports.SomeQuery = SomeQuery;
 //# sourceMappingURL=someQuery.js.map

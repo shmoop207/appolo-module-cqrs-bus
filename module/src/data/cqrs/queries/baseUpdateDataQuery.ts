@@ -1,22 +1,23 @@
 "use strict";
 import {BaseCommand, BaseQuery, QueryBus} from "../../../../../"
 import {ICrudItemParams} from "../../interfaces/IGetAllParams";
+import {RecursivePartial} from "@appolo/utils"
 
 
 interface IBaseUpdateDataQueryParams<T> {
-    data?: Partial<T>
+    data?: RecursivePartial<T>
     id?: string
 }
 
 interface IBaseUpdateAllDataQueryParams<T> {
-    data?: Partial<T>
+    data?: RecursivePartial<T>
     filter?: string | ICrudItemParams<T>,
 
 }
 
 export abstract class BaseUpdateDataQuery<T> extends BaseQuery<IBaseUpdateDataQueryParams<T>, T> {
 
-    public data(data: Partial<T>): this {
+    public data(data: RecursivePartial<T>): this {
         this._params.data = data;
         return this;
     }
@@ -30,7 +31,7 @@ export abstract class BaseUpdateDataQuery<T> extends BaseQuery<IBaseUpdateDataQu
 
 export abstract class BaseUpdateDataCommand<T> extends BaseCommand<IBaseUpdateDataQueryParams<T>> {
 
-    public data(data: Partial<T>): this {
+    public data(data: RecursivePartial<T>): this {
         this._params.data = data;
         return this;
     }
@@ -45,12 +46,12 @@ export abstract class BaseUpdateDataCommand<T> extends BaseCommand<IBaseUpdateDa
 
 export abstract class BaseUpdateAllDataQuery<T> extends BaseQuery<IBaseUpdateAllDataQueryParams<T>, void> {
 
-    public data(data: Partial<T>): this {
+    public data(data: RecursivePartial<T>): this {
         this._params.data = data;
         return this;
     }
 
-    public filter(key: keyof Partial<T>, value?: any): this {
+    public filter(key: keyof RecursivePartial<T>, value?: any): this {
         return this.filters({[key]: value ?? 1} as ICrudItemParams<T>)
     }
 

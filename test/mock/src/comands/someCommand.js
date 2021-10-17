@@ -10,14 +10,14 @@ let SomeCommand = class SomeCommand {
         this.name = name;
     }
 };
-tslib_1.__decorate([
-    inject_1.inject(),
-    tslib_1.__metadata("design:type", bus_1.BusProvider)
+(0, tslib_1.__decorate)([
+    (0, inject_1.inject)(),
+    (0, tslib_1.__metadata)("design:type", bus_1.BusProvider)
 ], SomeCommand.prototype, "busProvider", void 0);
-SomeCommand = tslib_1.__decorate([
-    index_1.command({ retry: { retires: 3 } }),
-    inject_1.define(),
-    tslib_1.__metadata("design:paramtypes", [String])
+SomeCommand = (0, tslib_1.__decorate)([
+    (0, index_1.command)({ retry: { retires: 3 } }),
+    (0, inject_1.define)(),
+    (0, tslib_1.__metadata)("design:paramtypes", [String])
 ], SomeCommand);
 exports.SomeCommand = SomeCommand;
 //# sourceMappingURL=someCommand.js.map

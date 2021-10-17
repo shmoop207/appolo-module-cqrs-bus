@@ -10,7 +10,7 @@ exports.SagaSymbol = "__SagaHandlerSymbol__";
 function defineClassHandler(target, opts, symbol) {
     utils_1.Reflector.setMetadata(symbol, opts, target);
     if (!inject_1.Util.getClassDefinition(target)) {
-        inject_1.define()(target);
+        (0, inject_1.define)()(target);
     }
 }
 exports.defineClassHandler = defineClassHandler;

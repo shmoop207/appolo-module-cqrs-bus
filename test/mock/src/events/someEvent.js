@@ -8,9 +8,9 @@ let SomeEvent = class SomeEvent {
         this.name = name;
     }
 };
-SomeEvent = tslib_1.__decorate([
-    decorators_1.event(),
-    tslib_1.__metadata("design:paramtypes", [String])
+SomeEvent = (0, tslib_1.__decorate)([
+    (0, decorators_1.event)(),
+    (0, tslib_1.__metadata)("design:paramtypes", [String])
 ], SomeEvent);
 exports.SomeEvent = SomeEvent;
 //# sourceMappingURL=someEvent.js.map

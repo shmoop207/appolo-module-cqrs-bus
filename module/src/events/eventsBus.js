@@ -14,9 +14,9 @@ let EventsBus = class EventsBus extends baseBus_1.BaseBus {
         return this.publishToBus(event, options);
     }
 };
-EventsBus = tslib_1.__decorate([
-    inject_1.define(),
-    inject_1.singleton()
+EventsBus = (0, tslib_1.__decorate)([
+    (0, inject_1.define)(),
+    (0, inject_1.singleton)()
 ], EventsBus);
 exports.EventsBus = EventsBus;
 //# sourceMappingURL=eventsBus.js.map

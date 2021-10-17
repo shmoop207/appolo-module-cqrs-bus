@@ -14,9 +14,9 @@ let CommandsBus = class CommandsBus extends baseBus_1.BaseBus {
         return this.publishToBus(command, options);
     }
 };
-CommandsBus = tslib_1.__decorate([
-    inject_1.define(),
-    inject_1.singleton()
+CommandsBus = (0, tslib_1.__decorate)([
+    (0, inject_1.define)(),
+    (0, inject_1.singleton)()
 ], CommandsBus);
 exports.CommandsBus = CommandsBus;
 //# sourceMappingURL=commandsBus.js.map
