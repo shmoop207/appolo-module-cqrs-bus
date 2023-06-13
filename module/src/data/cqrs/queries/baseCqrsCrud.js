@@ -11,6 +11,7 @@ const __1 = require("../../../../../");
 const inject_1 = require("@appolo/inject");
 const utils_1 = require("@appolo/utils");
 const cqrsCrudDecorator_1 = require("./cqrsCrudDecorator");
+const baseCountAllDataQuery_1 = require("./baseCountAllDataQuery");
 class BaseCqrsCrud {
     _getNamespace() {
         let { namespace } = utils_1.Reflector.getFnMetadata(cqrsCrudDecorator_1.CqrsCrudModelSymbol, this.constructor);
@@ -21,6 +22,13 @@ class BaseCqrsCrud {
         };
         (0, inject_1.define)()(temp);
         (0, __1.query)(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.Query.#`, type: `${this._getNamespace()}.GetAllQuery` }, options))(temp);
+        return this.inject ? this.inject.wire(temp) : new temp();
+    }
+    countAll(options) {
+        let temp = class extends baseCountAllDataQuery_1.BaseCountAllDataQuery {
+        };
+        (0, inject_1.define)()(temp);
+        (0, __1.query)(Object.assign({ fn: temp, routingKey: `${this._getNamespace()}.Query.#`, type: `${this._getNamespace()}.GetCountQuery` }, options))(temp);
         return this.inject ? this.inject.wire(temp) : new temp();
     }
     findOne(options) {
@@ -87,9 +95,9 @@ class BaseCqrsCrud {
         return this.inject ? this.inject.wire(temp) : new temp();
     }
 }
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.lazy)(),
-    (0, tslib_1.__metadata)("design:type", inject_1.Injector)
+    tslib_1.__metadata("design:type", inject_1.Injector)
 ], BaseCqrsCrud.prototype, "inject", void 0);
 exports.BaseCqrsCrud = BaseCqrsCrud;
 //# sourceMappingURL=baseCqrsCrud.js.map

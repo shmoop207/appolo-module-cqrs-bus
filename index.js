@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseQuery = exports.BaseEvent = exports.BaseCommand = exports.QueryBus = exports.EventsBus = exports.CommandsBus = exports.event = exports.query = exports.command = exports.CqrsModule = exports.crudQueryModel = exports.crudQuery = exports.BaseCqrsCrud = exports.BaseUpdateDataQuery = exports.BaseUpdateDataCommand = exports.BaseDeleteDataQuery = exports.BaseDeleteDataCommand = exports.BaseCreateDataCommand = exports.BaseCreateDataQuery = exports.BaseFindOneDataQuery = exports.BaseGetAllDataQuery = void 0;
+exports.BaseQuery = exports.BaseEvent = exports.BaseCommand = exports.QueryBus = exports.EventsBus = exports.CommandsBus = exports.event = exports.query = exports.command = exports.CqrsModule = exports.crudQueryModel = exports.crudQuery = exports.BaseCqrsCrud = exports.BaseUpdateDataQuery = exports.BaseUpdateDataCommand = exports.BaseDeleteDataQuery = exports.BaseDeleteDataCommand = exports.BaseCreateDataCommand = exports.BaseCreateDataQuery = exports.BaseFindOneDataQuery = exports.BaseCountAllDataQuery = exports.BaseGetAllDataQuery = void 0;
 const cqrsModule_1 = require("./module/cqrsModule");
 Object.defineProperty(exports, "CqrsModule", { enumerable: true, get: function () { return cqrsModule_1.CqrsModule; } });
 const decorators_1 = require("./module/src/decorators/decorators");
@@ -21,6 +21,8 @@ const baseQuery_1 = require("./module/src/query/baseQuery");
 Object.defineProperty(exports, "BaseQuery", { enumerable: true, get: function () { return baseQuery_1.BaseQuery; } });
 var baseGetAllDataQuery_1 = require("./module/src/data/cqrs/queries/baseGetAllDataQuery");
 Object.defineProperty(exports, "BaseGetAllDataQuery", { enumerable: true, get: function () { return baseGetAllDataQuery_1.BaseGetAllDataQuery; } });
+var baseCountAllDataQuery_1 = require("./module/src/data/cqrs/queries/baseCountAllDataQuery");
+Object.defineProperty(exports, "BaseCountAllDataQuery", { enumerable: true, get: function () { return baseCountAllDataQuery_1.BaseCountAllDataQuery; } });
 var baseFindOneDataQuery_1 = require("./module/src/data/cqrs/queries/baseFindOneDataQuery");
 Object.defineProperty(exports, "BaseFindOneDataQuery", { enumerable: true, get: function () { return baseFindOneDataQuery_1.BaseFindOneDataQuery; } });
 var baseCreateDataQuery_1 = require("./module/src/data/cqrs/queries/baseCreateDataQuery");

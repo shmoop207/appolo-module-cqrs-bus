@@ -13,6 +13,9 @@ function crudQuery(crudFn, options) {
         fn.prototype["cqrsGetAllQuery"] = async function (command) {
             return this.getAll(command.toJSON());
         };
+        fn.prototype["cqrsCountAllQuery"] = async function (command) {
+            return this.countAll(command.toJSON());
+        };
         fn.prototype["cqrsCreateQuery"] = async function (command) {
             return this.create(command.toJSON().data);
         };
@@ -46,6 +49,7 @@ function crudQuery(crudFn, options) {
         let crud = new crudFn();
         (0, index_1.query)({ fn: crud.findOne().constructor })(fn.prototype, "cqrsGetOneQuery");
         (0, index_1.query)({ fn: crud.getAll().constructor })(fn.prototype, "cqrsGetAllQuery");
+        (0, index_1.query)({ fn: crud.countAll().constructor })(fn.prototype, "cqrsCountAllQuery");
         (0, index_1.query)({ fn: crud.create().constructor })(fn.prototype, "cqrsCreateQuery");
         (0, index_1.command)({ fn: crud.createCommand().constructor })(fn.prototype, "cqrsCreateCommand");
         (0, index_1.query)({ fn: crud.update().constructor })(fn.prototype, "cqrsUpdateQuery");

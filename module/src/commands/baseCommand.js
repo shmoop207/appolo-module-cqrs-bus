@@ -23,9 +23,9 @@ class BaseCommand {
         return this.commandsBus.execute(this, options);
     }
 }
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.lazy)(),
-    (0, tslib_1.__metadata)("design:type", commandsBus_1.CommandsBus)
+    tslib_1.__metadata("design:type", commandsBus_1.CommandsBus)
 ], BaseCommand.prototype, "commandsBus", void 0);
 exports.BaseCommand = BaseCommand;
 //# sourceMappingURL=baseCommand.js.map

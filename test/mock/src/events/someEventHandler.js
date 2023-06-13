@@ -23,29 +23,29 @@ let SomeEventHandler = class SomeEventHandler {
         return this.manager.event3Handled = index_1.command.name;
     }
 };
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", manager_1.Manager)
+    tslib_1.__metadata("design:type", manager_1.Manager)
 ], SomeEventHandler.prototype, "manager", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, index_1.event)(),
-    (0, tslib_1.__metadata)("design:type", Function),
-    (0, tslib_1.__metadata)("design:paramtypes", [someEvent_1.SomeEvent]),
-    (0, tslib_1.__metadata)("design:returntype", Promise)
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [someEvent_1.SomeEvent]),
+    tslib_1.__metadata("design:returntype", Promise)
 ], SomeEventHandler.prototype, "handleSomeEvent", null);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, index_1.event)(),
-    (0, tslib_1.__metadata)("design:type", Function),
-    (0, tslib_1.__metadata)("design:paramtypes", [someEvent2_1.SomeEvent2]),
-    (0, tslib_1.__metadata)("design:returntype", Promise)
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [someEvent2_1.SomeEvent2]),
+    tslib_1.__metadata("design:returntype", Promise)
 ], SomeEventHandler.prototype, "handleSomeEvent2", null);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, index_1.event)(),
-    (0, tslib_1.__metadata)("design:type", Function),
-    (0, tslib_1.__metadata)("design:paramtypes", [someEvent3_1.SomeEvent3]),
-    (0, tslib_1.__metadata)("design:returntype", Promise)
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [someEvent3_1.SomeEvent3]),
+    tslib_1.__metadata("design:returntype", Promise)
 ], SomeEventHandler.prototype, "handleSomeEvent3", null);
-SomeEventHandler = (0, tslib_1.__decorate)([
+SomeEventHandler = tslib_1.__decorate([
     (0, inject_1.define)(),
     (0, inject_1.singleton)()
 ], SomeEventHandler);

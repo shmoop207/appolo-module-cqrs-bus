@@ -17,21 +17,21 @@ let SomeHandler = class SomeHandler {
             this.eventsBus.publish(new someEvent3_1.SomeEvent3("dd"))]);
     }
 };
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", manager_1.Manager)
+    tslib_1.__metadata("design:type", manager_1.Manager)
 ], SomeHandler.prototype, "manager", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", index_1.EventsBus)
+    tslib_1.__metadata("design:type", index_1.EventsBus)
 ], SomeHandler.prototype, "eventsBus", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, index_1.command)(),
-    (0, tslib_1.__metadata)("design:type", Function),
-    (0, tslib_1.__metadata)("design:paramtypes", [someCommand_1.SomeCommand]),
-    (0, tslib_1.__metadata)("design:returntype", Promise)
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [someCommand_1.SomeCommand]),
+    tslib_1.__metadata("design:returntype", Promise)
 ], SomeHandler.prototype, "handleSomeCommand", null);
-SomeHandler = (0, tslib_1.__decorate)([
+SomeHandler = tslib_1.__decorate([
     (0, inject_1.define)(),
     (0, inject_1.singleton)()
 ], SomeHandler);

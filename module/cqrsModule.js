@@ -77,11 +77,11 @@ let CqrsModule = CqrsModule_1 = class CqrsModule extends engine_1.Module {
         });
     }
 };
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", Object)
+    tslib_1.__metadata("design:type", Object)
 ], CqrsModule.prototype, "logger", void 0);
-CqrsModule = CqrsModule_1 = (0, tslib_1.__decorate)([
+CqrsModule = CqrsModule_1 = tslib_1.__decorate([
     (0, engine_1.module)()
 ], CqrsModule);
 exports.CqrsModule = CqrsModule;

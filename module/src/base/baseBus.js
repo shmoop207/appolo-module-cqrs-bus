@@ -32,35 +32,35 @@ class BaseBus {
         return instance;
     }
 }
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", engine_1.App)
+    tslib_1.__metadata("design:type", engine_1.App)
 ], BaseBus.prototype, "app", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", Object)
+    tslib_1.__metadata("design:type", Object)
 ], BaseBus.prototype, "moduleOptions", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", inject_1.Injector)
+    tslib_1.__metadata("design:type", inject_1.Injector)
 ], BaseBus.prototype, "injector", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", engine_1.Discovery)
+    tslib_1.__metadata("design:type", engine_1.Discovery)
 ], BaseBus.prototype, "discovery", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", logger_1.Logger)
+    tslib_1.__metadata("design:type", logger_1.Logger)
 ], BaseBus.prototype, "logger", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", bus_1.BusProvider)
+    tslib_1.__metadata("design:type", bus_1.BusProvider)
 ], BaseBus.prototype, "busProvider", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.init)(),
-    (0, tslib_1.__metadata)("design:type", Function),
-    (0, tslib_1.__metadata)("design:paramtypes", []),
-    (0, tslib_1.__metadata)("design:returntype", void 0)
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", []),
+    tslib_1.__metadata("design:returntype", void 0)
 ], BaseBus.prototype, "initialize", null);
 exports.BaseBus = BaseBus;
 //# sourceMappingURL=baseBus.js.map

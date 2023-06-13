@@ -6,7 +6,7 @@ const index_1 = require("../../../../index");
 const inject_1 = require("@appolo/inject");
 let CrudModel = class CrudModel extends index_1.BaseCqrsCrud {
 };
-CrudModel = (0, tslib_1.__decorate)([
+CrudModel = tslib_1.__decorate([
     (0, index_1.crudQueryModel)("Test.Curd.Model")
 ], CrudModel);
 exports.CrudModel = CrudModel;
@@ -15,7 +15,7 @@ let CrudModelManager = class CrudModelManager {
         return { results: [{ name: options.filter.name ? "aaa" : "bbb" }] };
     }
 };
-CrudModelManager = (0, tslib_1.__decorate)([
+CrudModelManager = tslib_1.__decorate([
     (0, inject_1.define)(),
     (0, index_1.crudQuery)(CrudModel)
 ], CrudModelManager);

@@ -16,25 +16,25 @@ let Manager = class Manager {
         return result;
     }
 };
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", index_1.CommandsBus)
+    tslib_1.__metadata("design:type", index_1.CommandsBus)
 ], Manager.prototype, "commandsBus", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", index_1.EventsBus)
+    tslib_1.__metadata("design:type", index_1.EventsBus)
 ], Manager.prototype, "eventsBus", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.inject)(),
-    (0, tslib_1.__metadata)("design:type", queryBus_1.QueryBus)
+    tslib_1.__metadata("design:type", queryBus_1.QueryBus)
 ], Manager.prototype, "queryBus", void 0);
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, inject_1.initAsync)(),
-    (0, tslib_1.__metadata)("design:type", Function),
-    (0, tslib_1.__metadata)("design:paramtypes", []),
-    (0, tslib_1.__metadata)("design:returntype", Promise)
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", []),
+    tslib_1.__metadata("design:returntype", Promise)
 ], Manager.prototype, "init", null);
-Manager = (0, tslib_1.__decorate)([
+Manager = tslib_1.__decorate([
     (0, inject_1.define)(),
     (0, inject_1.singleton)()
 ], Manager);

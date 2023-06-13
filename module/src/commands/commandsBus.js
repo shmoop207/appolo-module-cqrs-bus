@@ -14,7 +14,7 @@ let CommandsBus = class CommandsBus extends baseBus_1.BaseBus {
         return this.publishToBus(command, options);
     }
 };
-CommandsBus = (0, tslib_1.__decorate)([
+CommandsBus = tslib_1.__decorate([
     (0, inject_1.define)(),
     (0, inject_1.singleton)()
 ], CommandsBus);

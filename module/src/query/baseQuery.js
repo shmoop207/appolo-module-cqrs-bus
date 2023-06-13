@@ -23,9 +23,9 @@ class BaseQuery {
         return this.queryBus.query(this, opts);
     }
 }
-(0, tslib_1.__decorate)([
+tslib_1.__decorate([
     (0, index_1.lazy)(),
-    (0, tslib_1.__metadata)("design:type", queryBus_1.QueryBus)
+    tslib_1.__metadata("design:type", queryBus_1.QueryBus)
 ], BaseQuery.prototype, "queryBus", void 0);
 exports.BaseQuery = BaseQuery;
 //# sourceMappingURL=baseQuery.js.map
