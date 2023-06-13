@@ -10,6 +10,7 @@ import {BaseQuery} from "./module/src/query/baseQuery"
 import {IOptions} from "./module/src/interfaces/IOptions"
 
 export {BaseGetAllDataQuery} from "./module/src/data/cqrs/queries/baseGetAllDataQuery"
+export {BaseCountAllDataQuery} from "./module/src/data/cqrs/queries/baseCountAllDataQuery"
 export {BaseFindOneDataQuery} from "./module/src/data/cqrs/queries/baseFindOneDataQuery"
 
 export {BaseCreateDataQuery, BaseCreateDataCommand} from "./module/src/data/cqrs/queries/baseCreateDataQuery"

@@ -13,6 +13,7 @@ import {lazy, Injector, define} from "@appolo/inject";
 import {HandlerOptions} from "../../../decorators/decorators";
 import {Reflector} from "@appolo/utils";
 import {CqrsCrudModelSymbol, ICqrsCrudModelMetadata} from "./cqrsCrudDecorator";
+import {BaseCountAllDataQuery} from "./baseCountAllDataQuery";
 
 export abstract class BaseCqrsCrud<T> {
     @lazy() protected inject: Injector
@@ -32,6 +33,21 @@ export abstract class BaseCqrsCrud<T> {
             fn: temp,
             routingKey: `${this._getNamespace()}.Query.#`,
             type: `${this._getNamespace()}.GetAllQuery`, ...options
+        })(temp);
+
+        return this.inject ? this.inject.wire(temp) : new temp();
+    }
+
+    public countAll(options?: HandlerOptions): BaseCountAllDataQuery<T> {
+        let temp = class extends BaseCountAllDataQuery<T> {
+
+        }
+
+        define()(temp)
+        query({
+            fn: temp,
+            routingKey: `${this._getNamespace()}.Query.#`,
+            type: `${this._getNamespace()}.GetCountQuery`, ...options
         })(temp);
 
         return this.inject ? this.inject.wire(temp) : new temp();

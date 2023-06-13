@@ -1,4 +1,4 @@
-import {IGetAllParams} from "./IGetAllParams";
+import {ICountAllParams, IGetAllParams} from "./IGetAllParams";
 import {CrudItemParams} from "../cqrs/queries/baseGetAllDataQuery";
 
 export interface IBaseCrudManager<K> {
@@ -7,6 +7,8 @@ export interface IBaseCrudManager<K> {
     findOne(params: Pick<IGetAllParams<K>, "filter" | "fields" | "populate" | "lean">): Promise<K>
 
     getAll(params: IGetAllParams<Partial<K>>): Promise<{ results: K[], count: number }>
+
+    countAll(params: ICountAllParams<Partial<K>>): Promise<{ count: number }>
 
     findAll(options: Omit<IGetAllParams<Partial<K>>, "page" | "pageSize">): Promise<K[]>
 
@@ -19,8 +21,7 @@ export interface IBaseCrudManager<K> {
 
     deleteById(id: string, hard ?: boolean): Promise<void>
 
-    updateAll(query: CrudItemParams<K>|string, update: Partial<K>): Promise<void>
-
+    updateAll(query: CrudItemParams<K> | string, update: Partial<K>): Promise<void>
 
 
 }

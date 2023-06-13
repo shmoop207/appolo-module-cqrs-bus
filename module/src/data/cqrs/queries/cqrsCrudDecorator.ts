@@ -15,6 +15,7 @@ import {ICommandCtr} from "../../../commands/ICommand";
 import {IQueryCtr} from "../../../query/IQuery";
 import {define} from "@appolo/inject";
 import {Reflector} from "@appolo/utils";
+import {BaseCountAllDataQuery} from "./baseCountAllDataQuery";
 
 export function crudQuery(crudFn: { new(...args: any[]): BaseCqrsCrud<any> }, options?: {}): (fn: Function) => void {
 
@@ -26,6 +27,10 @@ export function crudQuery(crudFn: { new(...args: any[]): BaseCqrsCrud<any> }, op
 
         fn.prototype["cqrsGetAllQuery"] = async function (this: IBaseCrudManager<any>, command: BaseGetAllDataQuery<any>) {
             return this.getAll(command.toJSON());
+        }
+
+        fn.prototype["cqrsCountAllQuery"] = async function (this: IBaseCrudManager<any>, command: BaseCountAllDataQuery<any>) {
+            return this.countAll(command.toJSON());
         }
 
         fn.prototype["cqrsCreateQuery"] = async function (this: IBaseCrudManager<any>, command: BaseCreateDataQuery<any>) {
@@ -72,6 +77,8 @@ export function crudQuery(crudFn: { new(...args: any[]): BaseCqrsCrud<any> }, op
 
         query({fn: crud.findOne().constructor as IQueryCtr})(fn.prototype, "cqrsGetOneQuery");
         query({fn: crud.getAll().constructor as IQueryCtr})(fn.prototype, "cqrsGetAllQuery");
+        query({fn: crud.countAll().constructor as IQueryCtr})(fn.prototype, "cqrsCountAllQuery");
+
 
         query({fn: crud.create().constructor as IQueryCtr})(fn.prototype, "cqrsCreateQuery");
         command({fn: crud.createCommand().constructor as ICommandCtr})(fn.prototype, "cqrsCreateCommand");

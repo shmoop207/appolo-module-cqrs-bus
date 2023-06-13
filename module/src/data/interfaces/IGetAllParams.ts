@@ -21,4 +21,8 @@ export interface IGetAllParams<T> {
     populate?: string | IQueryPopulateOptions | IQueryPopulateOptions[];
 }
 
+export interface ICountAllParams<T> {
+    filter?: string | ICrudItemParams<T>,
+}
+
 export type IFindOneParams<T> = Pick<IGetAllParams<T>, "filter" | "fields" | "populate" | "lean">
