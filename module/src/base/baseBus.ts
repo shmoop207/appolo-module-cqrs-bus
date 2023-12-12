@@ -1,4 +1,4 @@
-import {define, singleton, inject, init, Define, Injector} from '@appolo/inject'
+import {define, singleton, inject, init, Define, Injector,lazy} from '@appolo/inject'
 import {App, Discovery} from '@appolo/engine'
 import {Logger} from "@appolo/logger";
 import {BusProvider, IHandlerMetadataOptions, IPublishProviderOptions} from "@appolo/bus";
@@ -16,7 +16,7 @@ export abstract class BaseBus {
     @inject() protected injector: Injector;
     @inject() protected discovery: Discovery;
     @inject() protected logger: Logger;
-    @inject() protected busProvider: BusProvider;
+    @lazy() protected busProvider: BusProvider;
 
 
     protected abstract readonly Symbol: string

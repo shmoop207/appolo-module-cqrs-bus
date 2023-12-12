@@ -53,7 +53,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", logger_1.Logger)
 ], BaseBus.prototype, "logger", void 0);
 tslib_1.__decorate([
-    (0, inject_1.inject)(),
+    (0, inject_1.lazy)(),
     tslib_1.__metadata("design:type", bus_1.BusProvider)
 ], BaseBus.prototype, "busProvider", void 0);
 tslib_1.__decorate([
